@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+<h1>Calculator</h1>
+
+  <input #element1 type="text" name="number1" id="number1" placeholder="Enter number 1">
+  <input #element2 type="text" name="number2" id="number2" placeholder="Enter number 2">
+  <br>
+
+  <button (click)="addition(element1.value, element2.value)"
+          name="operation" id="addition">
+    Addition(+)
+  </button>
+
+  <button (click)="subtraction(element1.value, element2.value)"
+    name="operation" id="subtraction">
+    Subtraction(-)
+  </button>
+
+  <button (click)="multiplication(element1.value, element2.value)"
+    name="operation" id="multiplication">
+    Multiplication(*)
+  </button>
+
+  <button (click)="division(element1.value, element2.value)"
+    name="operation" id="division">
+    Division(/)
+  </button>
+
+  <h3>Result Division: {{result}}</h3>
+
+</body>
+</html>
