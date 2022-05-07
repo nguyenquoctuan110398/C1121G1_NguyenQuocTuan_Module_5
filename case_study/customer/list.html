@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head id="head">
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -46,100 +46,6 @@
 
     <title>Furama</title>
 
-    <style type="text/css">
-        .cusdetail {
-            font-size: 200%;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        h3 {
-            background-color: lightskyblue;
-            color: white;
-            text-align: center;
-            padding: 10px 0 10px 20px;
-        }
-
-        div .error {
-            color: red;
-        }
-
-        footer {
-            margin: 10px 0;
-        }
-
-        #customers, #services {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        #customers td, #customers th, #services td, #services th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even), #services tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        #customers tr:hover, #services tr:hover {
-            background-color: #ddd;
-        }
-
-        #customers th, #services th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        label {
-            color: deepskyblue;
-        }
-
-        input[type=text], input[type=email], input[type=date], select, textarea {
-            width: 100%;
-            padding: 12px 0px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type=submit] {
-            width: 300px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-align: center;
-            display: inline-block;
-        }
-
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
-
-        #form {
-            width: 500px;
-            border-radius: 5px;
-            background-color: rgba(242, 242, 242, 0.1);
-            padding: 20px;
-        }
-
-        .notify span {
-            font-size: 15px;
-            color: blue;
-        }
-    </style>
 </head>
 <body>
 
@@ -152,7 +58,7 @@
     </a>
 </h4>
 <h4>
-    <a href="/customers/create">
+    <a href="../customer/create.html">
         Add new customer
     </a>
 </h4>
@@ -211,7 +117,8 @@
         <td>thihao07@gmail.com</td>
         <td>23 Nguyễn Hoàng, Đà Nẵng</td>
         <td>Member</td>
-        <td><a href="/customers/edit/1">Edit</a>
+<!--        <td><a href="/customers/edit/1">Edit</a>-->
+        <td><a href="../customer/edit.html">Edit</a>
         </td>
 
         <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
@@ -236,7 +143,8 @@
         <td>xuandieu92@gmail.com</td>
         <td>K77/22 Thái Phiên, Quảng Trị</td>
         <td>Member</td>
-        <td><a href="/customers/edit/2">Edit</a>
+<!--        <td><a href="/customers/edit/2">Edit</a>-->
+        <td><a href="../customer/edit.html">Edit</a>
         </td>
 
         <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
@@ -261,7 +169,8 @@
         <td>nghenhan2702@gmail.com</td>
         <td>K323/12 Ông Ích Khiêm, Vinh</td>
         <td>Diamond</td>
-        <td><a href="/customers/edit/3">Edit</a>
+<!--        <td><a href="/customers/edit/3">Edit</a>-->
+        <td><a href="../customer/edit.html">Edit</a>
         </td>
 
         <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
@@ -325,6 +234,7 @@
 <script>
     $(function () {
         $("#header").load("../layout/header.html")
+        $("#head").load("../layout/head.html")
     })
 </script>
 

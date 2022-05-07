@@ -98,7 +98,7 @@
         }
 
         label {
-            color: deepskyblue;
+            color: black;
         }
 
         input[type=text], input[type=email], input[type=date], select, textarea {
@@ -145,41 +145,86 @@
 
 <header th:fragment="header">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white" th:fragment="nav">
-        <div class="container-fluid">
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarExample01"
-                    aria-controls="navbarExample01"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars"></i>
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-white" th:fragment="nav">-->
+<!--        <div class="container-fluid">-->
+<!--            <button-->
+<!--                    class="navbar-toggler"-->
+<!--                    type="button"-->
+<!--                    data-mdb-toggle="collapse"-->
+<!--                    data-mdb-target="#navbarExample01"-->
+<!--                    aria-controls="navbarExample01"-->
+<!--                    aria-expanded="false"-->
+<!--                    aria-label="Toggle navigation"-->
+<!--            >-->
+<!--                <i class="fas fa-bars"></i>-->
+<!--            </button>-->
+<!--            <div class="collapse navbar-collapse" id="navbarExample01">-->
+<!--                <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                    <li class="nav-item active">-->
+<!--                        <a class="nav-link" aria-current="page" href="#">Home</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Employee</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Customer</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Service</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="#">Contract</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--&lt;!&ndash;     Navbar &ndash;&gt;-->
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Furama</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarExample01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
-                    </li>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav m-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Employee</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Customer</a>
+                        <a class="nav-link" href="/employees/list">Employee</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Service</a>
+                        <a class="nav-link" href="../customer/list.html">Customer</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contract</a>
+                        <a class="nav-link" href="../services/list.html">Service</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contracts/list">Contract</a>
                     </li>
                 </ul>
             </div>
+
+            <!--                <div>-->
+
+            <!--                    <h4 style="float: right; color: deepskyblue">-->
+            <!--                        Welcome: <span>dbadmin1</span>-->
+            <!--                        <span><a href="/logout" style="color: gray">Logout</a>-->
+            <!--                    </span></h4>-->
+
+            <!--                </div>-->
+
         </div>
     </nav>
-<!--     Navbar -->
 
     <!-- Background image -->
     <div
@@ -205,14 +250,14 @@
     <!-- Background image -->
 </header>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white">
+<!--&lt;!&ndash; Navbar &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-white">-->
 
-</nav>
+<!--</nav>-->
 
-<footer th:fragment="footer">
-    &copy; Nguyễn Quốc Tuấn - C1121G1
-</footer>
+<!--<footer th:fragment="footer">-->
+<!--    &copy; Nguyễn Quốc Tuấn - C1121G1-->
+<!--</footer>-->
 
 </body>
 </html>
