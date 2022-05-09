@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<h3>Services</h3>
+<!--<h4>-->
+<!--    <a th:href="@{/customers/create}">-->
+<!--        Add new customer-->
+<!--    </a>-->
+<!--</h4>-->
+
+<button class="btn btn-primary" type="button">
+  <a style="color: black" class="delete_btn"
+     data-mdb-toggle="modal" data-mdb-target="#addService">FACILITY</a>
+</button>
+
+<div class="notify">
+
+</div>
+
+<table id="services">
+
+  <thead>
+  <tr>
+    <th>Service id</th>
+    <th>Service code</th>
+    <th>Service name</th>
+    <th>Service area</th>
+    <th>Service cost</th>
+    <th>Service max people</th>
+    <th>Standard room</th>
+    <th>Description other convenience</th>
+    <th>Pool area</th>
+    <th>Number floor</th>
+    <th>Rent type name</th>
+    <th>Service type name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+
+  <tbody *ngFor="let service of services">
+  <tr>
+    <td>{{service.serviceId}}</td>
+    <td>{{service.serviceCost}}</td>
+    <td>{{service.serviceName}}</td>
+    <td>{{service.serviceArea}}</td>
+    <td>{{service.serviceCost}}</td>
+    <td>{{service.serviceMaxPeople}}</td>
+    <td>{{service.standardRoom}}</td>
+    <td>{{service.descriptionOtherConvenience}}</td>
+    <td>{{service.poolArea}}</td>
+    <td>{{service.numberOfFloors}}</td>
+    <td>{{service.rentTypeName}}</td>
+    <td>{{service.serviceTypeName}}</td>
+
+    <td><a href="../services/edit.html">Edit</a>
+    </td>
+
+    <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
+           onclick="deleteModal($(this))"
+           style="color: blue">Delete</a></td>
+
+    <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
+    <!--        </td>-->
+  </tr>
+
+  </tbody>
+</table>
