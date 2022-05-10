@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
 import {NavbarComponent} from "./component/layout/navbar/navbar.component";
 import {HeaderComponent} from "./component/layout/header/header.component";
-import {ServicesComponent} from "./component/services/services.component";
 import {CreateServiceComponent} from "./component/services/create-service/create-service.component";
 import {ListCustomerComponent} from "./component/customer/list-customer/list-customer.component";
 import {CreateCustomerComponent} from "./component/customer/create-customer/create-customer.component";
@@ -19,6 +18,7 @@ import { EditServiceVillaComponent } from './component/services/edit-service-vil
 import { EditServiceHouseComponent } from './component/services/edit-service-house/edit-service-house.component';
 import { EditServiceRoomComponent } from './component/services/edit-service-room/edit-service-room.component';
 import { EditServiceComponent } from './component/services/edit-service/edit-service.component';
+import { ListServiceComponent } from './component/services/list-service/list-service.component';
 
 
 @NgModule({
@@ -26,7 +26,6 @@ import { EditServiceComponent } from './component/services/edit-service/edit-ser
     AppComponent,
     NavbarComponent,
     HeaderComponent,
-    ServicesComponent,
     CreateServiceComponent,
     ListCustomerComponent,
     CreateCustomerComponent,
@@ -37,7 +36,8 @@ import { EditServiceComponent } from './component/services/edit-service/edit-ser
     EditServiceVillaComponent,
     EditServiceHouseComponent,
     EditServiceRoomComponent,
-    EditServiceComponent
+    EditServiceComponent,
+    ListServiceComponent
   ],
   imports: [
     BrowserModule,
