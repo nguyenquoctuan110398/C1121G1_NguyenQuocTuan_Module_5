@@ -1,8 +1,8 @@
-import {Services} from "../model/services/services";
+import {Services} from "../../model/services/services";
 
 export class ServiceDao {
   // static
-  public static service: Services [] = [
+  public static services: Services [] = [
     {
       serviceId: 1,
       serviceCode: "DV-0001",

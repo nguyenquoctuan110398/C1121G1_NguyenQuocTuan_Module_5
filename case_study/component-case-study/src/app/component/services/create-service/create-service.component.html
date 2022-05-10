@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+<h3>Add Service</h3>
+
+<p style="text-align: center;">
+  <a href="../../../../../../services/list.html" style="color: black">
+    Back to list services
+  </a>
+</p>
+
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+    <label>Choose service type need to create</label>
+    <select (click)="chooseServiceType($event.target)">
+      <option value="1">Villa</option>
+      <option value="2">House</option>
+      <option value="3">Room</option>
+    </select>
+  </div>
+</div>
+
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+
+    <div>
+      <label>Service type name: </label>
+      <input type="text" *ngIf="!(serviceType == '1' || serviceType == '2' || serviceType == '3')"
+             placeholder="serviceTypeName" readonly>
+      <input type="text" *ngIf="serviceType == '1'" value="Villa" readonly>
+      <input type="text" *ngIf="serviceType == '2'" value="House" readonly>
+      <input type="text" *ngIf="serviceType == '3'" value="Room" readonly>
+    </div>
+
+    <div>
+      <label for="code">Code: </label>
+      <input type="text" id="code">
+    </div>
+
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name">
+    </div>
+
+    <div>
+      <label for="area">Area: </label>
+      <input type="text" id="area">
+    </div>
+
+    <div>
+      <label for="cost">Cost: </label>
+      <input type="text" id="cost">
+    </div>
+
+    <div>
+      <label for="maxPeople">Max people: </label>
+      <input type="text" id="maxPeople">
+    </div>
+
+    <div *ngIf="(serviceType == '1' || serviceType == '2')">
+      <label for="standardRoom">Standard room: </label>
+      <input type="text" id="standardRoom">
+    </div>
+
+    <div *ngIf="(serviceType == '1' || serviceType == '2')">
+      <label for="descriptionOtherConvenience">Description other convenience: </label>
+      <input type="text" id="descriptionOtherConvenience">
+    </div>
+
+    <div *ngIf="serviceType == '1'">
+      <label for="poolArea">Pool area: </label>
+      <input type="text" id="poolArea">
+    </div>
+
+    <div *ngIf="(serviceType == '1' || serviceType == '2')">
+      <label for="numberOfFloors">Number of floors: </label>
+      <input type="text" id="numberOfFloors">
+    </div>
+
+    <div>
+      <label>Rent type name: </label>
+      <select id="rentType" name="rentType">
+        <option value="1">year</option>
+        <option value="2">month</option>
+        <option value="3">day</option>
+        <option value="4">hour</option>
+      </select>
+    </div>
+
+    <div style="text-align: center">
+      <input type="submit" value="Create">
+    </div>
+
+  </div>
+</div>

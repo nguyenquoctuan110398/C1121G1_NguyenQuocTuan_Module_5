@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceDao} from "../dao/serviceDao";
+import {ServiceDao} from "../../dao/service/serviceDao";
 
 @Component({
   selector: 'app-services',
@@ -8,7 +8,7 @@ import {ServiceDao} from "../dao/serviceDao";
 })
 export class ServicesComponent implements OnInit {
 
-  services = ServiceDao.service;
+  services = ServiceDao.services;
 
   constructor() { }
 

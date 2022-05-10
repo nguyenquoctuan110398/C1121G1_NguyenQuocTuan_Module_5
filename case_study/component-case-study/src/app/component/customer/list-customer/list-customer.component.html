@@ -1,0 +1,79 @@
+<app-header></app-header>
+
+<h3>Customer</h3>
+
+<table id="services">
+
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Birthday</th>
+    <th>Gender</th>
+    <th>Id Card</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Customer type name</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+
+  <tbody *ngFor="let customer of customers">
+  <tr>
+    <td>{{customer.customerId}}</td>
+    <td>{{customer.customerCode}}</td>
+    <td>{{customer.customerName}}</td>
+    <td>{{customer.customerBirthday}}</td>
+    <td *ngIf="customer.customerGender == 0">Nữ</td>
+    <td *ngIf="customer.customerGender == 1">Nam</td>
+    <td>{{customer.customerIdCard}}</td>
+    <td>{{customer.customerPhone}}</td>
+    <td>{{customer.customerEmail}}</td>
+    <td>{{customer.customerAddress}}</td>
+    <td>{{customer.customerTypeName}}</td>
+
+    <td><a href="../../../../../../customer/edit.html">Edit</a>
+    </td>
+
+    <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
+           (click)="deleteCustomer(customer.customerName)"
+           style="color: blue">Delete</a></td>
+
+    <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
+    <!--        </td>-->
+  </tr>
+  </tbody>
+
+</table>
+
+<!--Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="#" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <input type="hidden" id="deleteByCustomerId" name="deleteByCustomerId">
+        <div class="modal-body">
+          <p id="deleteInfor"></p>
+          <p id="deleteInforNameCustomer"></p>
+          <p>Do you want delete <span style="color: red">{{customerNameDelete}}</span>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                  id="cancelDeleteModalBtn">No
+          </button>
+          <button type="submit" class="btn btn-primary" id="deleteModalBtn">Yes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

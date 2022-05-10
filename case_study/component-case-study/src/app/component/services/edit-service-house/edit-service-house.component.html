@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+<h3>Edit service</h3>
+
+<p style="text-align: center;">
+  <a href="../services/list.html" style="color: white">
+    Back to list services
+  </a>
+</p>
+
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+
+    <!--        <form action="/customers/update" method="post">-->
+
+    <div>
+      <label for="serviceTypeName">Service type name: </label>
+      <select id="serviceTypeName" name="serviceType">
+        <option value="2">House</option>
+
+
+      </select>
+    </div>
+
+    <div>
+      <label for="code">Code: </label>
+      <input type="text" id="code" name="serviceCode" value="DV-0002">
+
+    </div>
+
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="serviceName" value="House Princess 01">
+    </div>
+
+    <div>
+      <label for="area">Area: </label>
+      <input type="text" id="area" name="serviceArea" value="14000">
+
+
+    </div>
+
+    <div>
+      <label for="cost">Cost: </label>
+      <input type="text" id="cost" name="serviceCost" value="5000000">
+
+    </div>
+
+    <div>
+      <label for="maxPeople">Max people: </label>
+      <input type="text" id="maxPeople" name="serviceMaxPeople" value="7">
+
+    </div>
+
+    <div>
+      <label for="standardRoom">Standard room: </label>
+      <input type="text" id="standardRoom" name="standardRoom" value="vip">
+    </div>
+
+    <div>
+      <label for="descriptionOtherConvenience">Description other convenience: </label>
+      <input type="text" id="descriptionOtherConvenience" name="descriptionOtherConvenience" value="Có thêm Bếp Nướng">
+    </div>
+
+<!--    <div>-->
+<!--      <label for="poolArea">Pool area: </label>-->
+<!--      <input type="text" id="poolArea" name="poolArea" value="500">-->
+
+<!--    </div>-->
+
+    <div>
+      <label for="numberOfFloors">Number of floors: </label>
+      <input type="text" id="numberOfFloors" name="numberOfFloors" value="3">
+
+    </div>
+
+    <div>
+      <select id="rentType" name="rentType">
+        <option value="1">year</option>
+        <option value="2">month</option>
+        <option value="3">day</option>
+        <option value="4">hour</option>
+      </select>
+    </div>
+
+    <div style="text-align: center">
+      <input type="submit" value="Update">
+    </div>
+    <!--        </form>-->
+
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+<h3>Contracts</h3>
+<h4>
+  <a href="/contract-details/list">
+    Go to list contract detail
+  </a>
+</h4>
+<h4>
+  <a href="../contract/create.html">
+    Add new contract
+  </a>
+</h4>
+
+<!--<table>-->
+<!--    <form action="/contracts/list">-->
+<!--        <tr>-->
+<!--            <td><input type="text" name="searchByName" placeholder="Search by name"></td>-->
+<!--            <td><input type="submit" value="Search"></td>-->
+<!--        </tr>-->
+<!--    </form>-->
+
+<!--    <tr>-->
+<!--        <td>-->
+<!--            <a th:href="@{/contracts/list}"><input type="submit" value="Reset"></a>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<div class="notify">
+
+</div>
+
+<table id="customers">
+
+  <thead>
+  <tr>
+
+    <th>Id</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Deposit</th>
+    <th>Employee name</th>
+    <th>Customer name</th>
+    <th>Service name</th>
+    <!--        <th>Edit</th>-->
+    <!--        <th>Delete</th>-->
+    <th>View</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let contract of contracts">
+
+    <td>{{contract.contractId}}</td>
+    <td>{{contract.contractStartDate | date: 'dd-MM-yyyy'}}</td>
+    <td>{{contract.contractEndDate | date: 'dd-MM-yyyy'}}</td>
+    <td>{{contract.contractDeposit}}</td>
+    <td>{{contract.employeeName}}</td>
+    <td>{{contract.customerName}}</td>
+    <td>{{contract.servicesName}}</td>
+
+    <!--        <td><a th:href="@{/customers/edit/{customerId}(customerId=${customer.customerId})}">Edit</a>-->
+    <!--        </td>-->
+
+    <!--        <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"-->
+    <!--               onclick="deleteModal($(this))" th:data-id="${customer.customerId}"-->
+    <!--               th:data-name="${customer.customerName}" style="color: blue">Delete</a></td>-->
+
+    <td><a href="/contracts/view/1">
+      View</a>
+    </td>
+  </tr>
+
+
+  </tbody>
+
+</table>
+
+<div>
+
+  <span>1</span>/<span>5</span>
+  <a href="/contracts/list/?page=1">Next</a>
+</div>
+
+
+<app-footer></app-footer>

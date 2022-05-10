@@ -3,20 +3,46 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ServicesComponent } from './services/services.component';
+
+import {FormsModule} from "@angular/forms";
+import {NavbarComponent} from "./navbar/navbar.component";
+import {HeaderComponent} from "./header/header.component";
+import {ServicesComponent} from "./component/services/services.component";
+import {CreateServiceComponent} from "./component/services/create-service/create-service.component";
+import {ListCustomerComponent} from "./component/customer/list-customer/list-customer.component";
+import {CreateCustomerComponent} from "./component/customer/create-customer/create-customer.component";
+import {EditCustomerComponent} from "./component/customer/edit-customer/edit-customer.component";
+import {CreateContractComponent} from "./component/contract/create-contract/create-contract.component";
+import {ListContractComponent} from "./component/contract/list-contract/list-contract.component";
+import {FooterComponent} from "./footer/footer.component";
+import { EditServiceVillaComponent } from './component/services/edit-service-villa/edit-service-villa.component';
+import { EditServiceHouseComponent } from './component/services/edit-service-house/edit-service-house.component';
+import { EditServiceRoomComponent } from './component/services/edit-service-room/edit-service-room.component';
+import { EditServiceComponent } from './component/services/edit-service/edit-service.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     NavbarComponent,
-    ServicesComponent
+    HeaderComponent,
+    ServicesComponent,
+    CreateServiceComponent,
+    ListCustomerComponent,
+    CreateCustomerComponent,
+    EditCustomerComponent,
+    CreateContractComponent,
+    ListContractComponent,
+    FooterComponent,
+    EditServiceVillaComponent,
+    EditServiceHouseComponent,
+    EditServiceRoomComponent,
+    EditServiceComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

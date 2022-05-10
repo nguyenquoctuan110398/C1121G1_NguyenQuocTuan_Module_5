@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<h3>Add Service</h3>
+
+<p style="text-align: center;">
+  <a href="../../../../../../services/list.html" style="color: black">
+    Back to list services
+  </a>
+</p>
+
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+
+    <form action="/customers/save" method="post">
+
+      <label for="code">Code: </label>
+      <input type="text" id="code" name="customerCode" value="">
+
+
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="customerName" value="">
+
+
+      <label for="birthday">Birthday: </label>
+      <input type="date" id="birthday" name="customerBirthday" value="">
+
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="customerGender">
+        <option value="0">Nữ</option>
+        <option value="1">Nam</option>
+      </select>
+
+      <label for="idCard">Id card: </label>
+      <input type="text" id="idCard" name="customerIdCard" value="">
+
+
+      <label for="phone">Phone: </label>
+      <input type="text" id="phone" name="customerPhone" value="">
+
+
+      <label for="email">Email: </label>
+      <input type="text" id="email" name="customerEmail" value="">
+
+
+      <label for="address">Address: </label>
+      <input type="text" id="address" name="customerAddress" value="">
+
+
+      <label for="customerType">Customer type: </label>
+      <select id="customerType" name="customerType">
+        <option value="1">Diamond</option>
+        <option value="2">Platinium</option>
+        <option value="3">Gold</option>
+        <option value="4">Silver</option>
+        <option value="5">Member</option>
+      </select>
+
+      <div style="text-align: center">
+        <input type="submit" value="Create">
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

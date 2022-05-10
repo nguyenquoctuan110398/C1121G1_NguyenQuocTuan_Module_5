@@ -1,0 +1,62 @@
+<app-header></app-header>
+
+<body style="background-attachment: fixed; background-position: center bottom;
+      background-repeat: no-repeat;background-size: cover;
+      object-fit: cover;">
+
+<h3>Add Contract</h3>
+<p style="text-align: center;">
+  <a href="../../../../../../contract/list.html" style="color: white">
+    Back to list contract
+  </a>
+</p>
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+
+    <form action="/contracts/save" method="post">
+
+      <label for="startDate">Star date: </label>
+      <input type="date" id="startDate" name="contractStartDate" value="">
+
+
+      <label for="endDate">End date: </label>
+      <input type="date" id="endDate" name="contractEndDate" value="">
+
+
+      <label for="deposit">Deposit: </label>
+      <input type="text" id="deposit" name="contractDeposit" value="">
+
+
+      <label for="employee">Employee name: </label>
+      <select id="employee" name="employee">
+        <option value="1">Nguyễn Văn An</option>
+        <option value="2">Lê Văn Bình</option>
+        <option value="3">Hồ Thị Yến</option>
+        <option value="4">Võ Công Toản</option>
+        <option value="5">Nguyễn Bỉnh Phát</option>
+        <option value="6">Khúc Nguyễn An Nghi</option>
+        <option value="7">Nguyễn Hữu Hà</option>
+        <option value="8">Nguyễn Hà Đông</option>
+        <option value="9">Tòng Hoang</option>
+        <option value="10">Nguyễn Công Đạo</option>
+      </select>
+
+      <label for="customer">Customer name: </label>
+      <select id="customer" name="customer" >
+        <option *ngFor="let customer of customers">{{customer.customerName}}</option>
+      </select>
+
+      <label for="service">Service name: </label>
+      <select id="service" name="services">
+        <option *ngFor="let service of services">{{service.serviceName}}</option>
+      </select>
+
+      <div style="text-align: center">
+        <input type="submit" value="Create">
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<app-footer></app-footer>
