@@ -35,9 +35,9 @@
           <p class="error">Customer name is not valid!</p>
         </div>
 
-        <!--        <div *ngIf="createCustomerForm.controls.customerName.hasError('pattern')">-->
-        <!--          <p class="error">Wrong format!</p>-->
-        <!--        </div>-->
+        <div *ngIf="createCustomerForm.controls.customerName.hasError('pattern')">
+          <p class="error">Wrong format!</p>
+        </div>
       </div>
 
 

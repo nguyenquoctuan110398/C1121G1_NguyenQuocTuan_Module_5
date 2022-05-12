@@ -22,73 +22,163 @@
 <div class="container" style="text-align: center">
   <div id="form" style="display: inline-block; text-align: left">
 
-    <div>
-      <label>Service type name: </label>
-      <input type="text" *ngIf="!(serviceType == '1' || serviceType == '2' || serviceType == '3')"
-             placeholder="serviceTypeName" readonly>
-      <input type="text" *ngIf="serviceType == '1'" value="Villa" readonly>
-      <input type="text" *ngIf="serviceType == '2'" value="House" readonly>
-      <input type="text" *ngIf="serviceType == '3'" value="Room" readonly>
-    </div>
+    <form [formGroup]="createServiceForm" (ngSubmit)="onSubmit()" novalidate (submit)="getServiceTypeName()">
+      <div>
+        <label>Service type name: </label>
+        <input type="text" *ngIf="!(serviceType == '1' || serviceType == '2' || serviceType == '3')"
+               placeholder="serviceTypeName" readonly>
+        <input type="text" *ngIf="serviceType == '1'" value="Villa" readonly>
+        <input type="text" *ngIf="serviceType == '2'" value="House" readonly>
+        <input type="text" *ngIf="serviceType == '3'" value="Room" readonly>
+      </div>
 
-    <div>
-      <label for="code">Code: </label>
-      <input type="text" id="code">
-    </div>
+      <div>
+        <label for="code">Code: </label>
+        <input type="text" id="code" name="serviceCode" formControlName="serviceCode">
+      </div>
+      <div *ngIf="createServiceForm.controls.serviceCode.hasError &&
+      (createServiceForm.controls.serviceCode.touched || createServiceForm.controls.serviceCode.dirty)">
+        <div *ngIf="createServiceForm.controls.serviceCode.hasError('required')">
+          <p class="error">Code is not valid!</p>
+        </div>
 
-    <div>
-      <label for="name">Name: </label>
-      <input type="text" id="name">
-    </div>
+        <div *ngIf="createServiceForm.controls.serviceCode.hasError('pattern')">
+          <p class="error">Wrong format! Format should be DV-XXXX</p>
+        </div>
+      </div>
 
-    <div>
-      <label for="area">Area: </label>
-      <input type="text" id="area">
-    </div>
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" id="name" formControlName="serviceName">
+      </div>
+      <div *ngIf="createServiceForm.controls.serviceName.hasError &&
+      (createServiceForm.controls.serviceName.touched || createServiceForm.controls.serviceName.dirty)">
+        <div *ngIf="createServiceForm.controls.serviceName.hasError('required')">
+          <p class="error">Name is not valid!</p>
+        </div>
 
-    <div>
-      <label for="cost">Cost: </label>
-      <input type="text" id="cost">
-    </div>
+        <div *ngIf="createServiceForm.controls.serviceName.hasError('pattern')">
+          <p class="error">Wrong format!</p>
+        </div>
+      </div>
 
-    <div>
-      <label for="maxPeople">Max people: </label>
-      <input type="text" id="maxPeople">
-    </div>
+      <div>
+        <label for="area">Area: </label>
+        <input type="text" id="area" formControlName="serviceArea">
+      </div>
+      <div *ngIf="createServiceForm.controls.serviceArea.hasError &&
+      (createServiceForm.controls.serviceArea.touched || createServiceForm.controls.serviceArea.dirty)">
+        <div *ngIf="createServiceForm.controls.serviceArea.hasError('required')">
+          <p class="error">Area is not valid!</p>
+        </div>
 
-    <div *ngIf="(serviceType == '1' || serviceType == '2')">
-      <label for="standardRoom">Standard room: </label>
-      <input type="text" id="standardRoom">
-    </div>
+        <div *ngIf="createServiceForm.controls.serviceArea.hasError('pattern')">
+          <p class="error">Area must be positive numbers!</p>
+        </div>
+      </div>
 
-    <div *ngIf="(serviceType == '1' || serviceType == '2')">
-      <label for="descriptionOtherConvenience">Description other convenience: </label>
-      <input type="text" id="descriptionOtherConvenience">
-    </div>
+      <div>
+        <label for="cost">Cost: </label>
+        <input type="text" id="cost" formControlName="serviceCost">
+      </div>
+      <div *ngIf="createServiceForm.controls.serviceCost.hasError &&
+      (createServiceForm.controls.serviceCost.touched || createServiceForm.controls.serviceCost.dirty)">
+        <div *ngIf="createServiceForm.controls.serviceCost.hasError('required')">
+          <p class="error">Cost is not valid!</p>
+        </div>
 
-    <div *ngIf="serviceType == '1'">
-      <label for="poolArea">Pool area: </label>
-      <input type="text" id="poolArea">
-    </div>
+        <div *ngIf="createServiceForm.controls.serviceCost.hasError('pattern')">
+          <p class="error">Cost must be greater than 0!</p>
+        </div>
+      </div>
 
-    <div *ngIf="(serviceType == '1' || serviceType == '2')">
-      <label for="numberOfFloors">Number of floors: </label>
-      <input type="text" id="numberOfFloors">
-    </div>
+      <div>
+        <label for="maxPeople">Max people: </label>
+        <input type="text" id="maxPeople" formControlName="serviceMaxPeople">
+      </div>
+      <div *ngIf="createServiceForm.controls.serviceMaxPeople.hasError &&
+      (createServiceForm.controls.serviceMaxPeople.touched || createServiceForm.controls.serviceMaxPeople.dirty)">
+        <div *ngIf="createServiceForm.controls.serviceMaxPeople.hasError('required')">
+          <p class="error">Max people is not valid!</p>
+        </div>
 
-    <div>
-      <label>Rent type name: </label>
-      <select id="rentType" name="rentType">
-        <option value="1">year</option>
-        <option value="2">month</option>
-        <option value="3">day</option>
-        <option value="4">hour</option>
-      </select>
-    </div>
+        <div *ngIf="createServiceForm.controls.serviceMaxPeople.hasError('pattern')">
+          <p class="error">Max people must be positive numbers!</p>
+        </div>
+      </div>
 
-    <div style="text-align: center">
-      <input type="submit" value="Create">
-    </div>
+      <div *ngIf="serviceType == '1' || serviceType == '2'">
+        <label for="standardRoom">Standard room: </label>
+        <input type="text" id="standardRoom" formControlName="standardRoom" >
+      </div>
+      <div *ngIf="createServiceForm.controls.standardRoom.hasError &&
+      (createServiceForm.controls.standardRoom.touched || createServiceForm.controls.standardRoom.dirty)">
+        <div *ngIf="createServiceForm.controls.standardRoom.hasError('required')">
+          <p class="error">Standard room is not valid!</p>
+        </div>
+      </div>
+
+      <div *ngIf="(serviceType == '1' || serviceType == '2')">
+        <label for="descriptionOtherConvenience">Description other convenience: </label>
+        <input type="text" id="descriptionOtherConvenience" formControlName="descriptionOtherConvenience">
+      </div>
+      <div *ngIf="createServiceForm.controls.descriptionOtherConvenience.hasError &&
+      (createServiceForm.controls.descriptionOtherConvenience.touched || createServiceForm.controls.descriptionOtherConvenience.dirty)">
+        <div *ngIf="createServiceForm.controls.descriptionOtherConvenience.hasError('required')">
+          <p class="error">Description Other Convenience is not valid!</p>
+        </div>
+      </div>
+
+      <div *ngIf="serviceType == '1'">
+        <label for="poolArea">Pool area: </label>
+        <input type="text" id="poolArea" formControlName="poolArea">
+      </div>
+      <div *ngIf="createServiceForm.controls.poolArea.hasError &&
+      (createServiceForm.controls.poolArea.touched || createServiceForm.controls.poolArea.dirty)">
+        <div *ngIf="createServiceForm.controls.poolArea.hasError('required')">
+          <p class="error">Pool area is not valid!</p>
+        </div>
+
+        <div *ngIf="createServiceForm.controls.poolArea.hasError('pattern')">
+          <p class="error">Pool area must be greater than 0!</p>
+        </div>
+      </div>
+
+      <div *ngIf="(serviceType == '1' || serviceType == '2')">
+        <label for="numberOfFloors">Number of floors: </label>
+        <input type="text" id="numberOfFloors" formControlName="numberOfFloors">
+      </div>
+      <div *ngIf="createServiceForm.controls.numberOfFloors.hasError &&
+      (createServiceForm.controls.numberOfFloors.touched || createServiceForm.controls.numberOfFloors.dirty)">
+        <div *ngIf="createServiceForm.controls.numberOfFloors.hasError('required')">
+          <p class="error">Number floor is not valid!</p>
+        </div>
+
+        <div *ngIf="createServiceForm.controls.numberOfFloors.hasError('pattern')">
+          <p class="error">Number floor must be positive numbers!</p>
+        </div>
+      </div>
+
+      <div>
+        <label>Rent type name: </label>
+        <select id="rentType" name="rentType" formControlName="rentTypeName">
+          <option value="1">year</option>
+          <option value="2">month</option>
+          <option value="3">day</option>
+          <option value="4">hour</option>
+        </select>
+      </div>
+      <div *ngIf="createServiceForm.controls.rentTypeName.hasError &&
+      (createServiceForm.controls.rentTypeName.touched || createServiceForm.controls.rentTypeName.dirty)">
+        <div *ngIf="createServiceForm.controls.rentTypeName.hasError('required')">
+          <p class="error">Rent Type name is not valid!</p>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <input type="submit" value="Create">
+      </div>
+    </form>
 
   </div>
 </div>

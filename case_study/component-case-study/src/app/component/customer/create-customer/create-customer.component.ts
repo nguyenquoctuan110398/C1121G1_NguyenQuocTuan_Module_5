@@ -15,7 +15,7 @@ export class CreateCustomerComponent implements OnInit {
       customerCode: new FormControl('', [Validators.required,
         Validators.pattern('^(KH)-\\d{4}$')]),
       customerName: new FormControl('', [Validators.required,
-        Validators.pattern("^[\\p{Lu}\\p{Ll}]+( [\\p{Lu}\\p{Ll}]+)*$")]),
+      Validators.pattern('^[a-zA-Z ]{2,}$')]),
       customerBirthday: new FormControl('', [Validators.required]),
       customerGender: new FormControl('', [Validators.required]),
       customerIdCard: new FormControl('', [Validators.required,
