@@ -1,169 +1,147 @@
-<h3>Register form</h3>
+<h3 class="col-4 mx-auto" style="text-align: center">Register form</h3>
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-  <p>
-    <label for="email">Email: </label>
-    <input type="text" id="email" name="email" formControlName="email">
-  </p>
-<div class="form-outline mb-4" *ngIf="!email.valid && (email.dirty || email.touched)">
-  <div [hidden]="!email.errors.required">
-    <p style="color: red">Email is not valid!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <div class="col-4 mx-auto">
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="text" class="form-control" id="email" name="email" formControlName="email">
+      <label class="form-label" for="email">Email: </label>
+    </div>
+    <div class="form-outline mb-4" *ngIf="!email.valid && (email.dirty || email.touched)">
+      <div [hidden]="!email.errors.required">
+        <p style="color: red">Email must be valid!</p>
+      </div>
+
+      <div [hidden]="!email.errors.pattern">
+        <p style="color: red">Email invalidate!</p>
+      </div>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="password" name="password" formControlName="password" class="form-control">
+      <label for="password" class="form-label">Password: </label>
+    </div>
+    <div *ngIf="!password.valid && (password.dirty || password.touched)">
+      <div [hidden]="!password.errors.required">
+        <p style="color: red">Password is not valid!</p>
+      </div>
+
+      <div [hidden]="!password.errors.minlength">
+        <p style="color: red">Password is min length 6!</p>
+      </div>
+    </div>
+
+    <!-- Confirm password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="confirmPassword" name="confirmPassword"
+             formControlName="confirmPassword" (change)="checkConfirmPassword()"
+             class="form-control">
+      <label for="confirmPassword" class="form-label">Confirm Password: </label>
+    </div>
+    <div *ngIf="!confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)">
+      <div [hidden]="!confirmPassword.errors.required">
+        <p style="color: red">Confirm Password is not valid!</p>
+      </div>
+
+      <div [hidden]="!confirmPassword.errors.minlength">
+        <p style="color: red">Confirm Password is min length 6!</p>
+      </div>
+
+      <div [hidden]="!confirmPassword.errors.notMatch">
+        <p style="color: red">Confirm Password and Password must be same!</p>
+      </div>
+    </div>
+
+    <!-- Country -->
+    <p>
+      <label for="country">Country: </label>
+      <select id="country" name="country" formControlName="country" class="form-select" aria-label="Default select example">
+        <option *ngFor="let c of countryList" [ngValue]="c.id">
+          {{c.name}}
+        </option>
+      </select>
+    </p>
+    <div *ngIf="!country.valid && (country.dirty || country.touched)">
+      <div [hidden]="!country.errors.required">
+        <p style="color: red">Country is not valid!</p>
+      </div>
+    </div>
+
+    <!-- Age input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="age" name="age" formControlName="age" class="form-control">
+      <label for="age" class="form-label">Age: </label>
+    </div>
+    <div *ngIf="!age.valid && (age.dirty || age.touched)">
+      <div [hidden]="!age.errors.required">
+        <p style="color: red">Age is not valid!</p>
+      </div>
+
+      <div [hidden]="!age.errors.pattern">
+        <p style="color: red">Age must greater than or equal 18!</p>
+      </div>
+    </div>
+
+    <!-- Gender -->
+    <p>
+      <label for="gender">Gender: </label>
+      <br>
+      <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
+      <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
+    </p>
+    <div *ngIf="!gender.valid && (gender.dirty || gender.touched)">
+      <div [hidden]="!gender.errors.required">
+        <p style="color: red">Gender is not valid!</p>
+      </div>
+    </div>
+
+    <!-- Phone input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="phone" name="phone" formControlName="phone" class="form-control">
+      <label for="phone" class="form-label">Phone: </label>
+    </div>
+    <div *ngIf="!phone.valid && (phone.dirty || phone.touched)">
+      <div [hidden]="!phone.errors.required">
+        <p style="color: red">Phone is not valid!</p>
+      </div>
+
+      <div [hidden]="!phone.errors.pattern">
+        <p style="color: red">Phone invalidate</p>
+      </div>
+    </div>
+
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked/>
+      <label class="form-check-label" for="form2Example33">
+        Subscribe to our newsletter
+      </label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>or sign up with:</p>
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-google"></i>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-twitter"></i>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-github"></i>
+      </button>
+    </div>
   </div>
-
-  <div [hidden]="!email.errors.pattern">
-    <p style="color: red">Email invalidate!</p>
-  </div>
-</div>
-
-  <p>
-    <label for="password">Password: </label>
-    <input type="password" id="password" name="password" formControlName="password">
-  </p>
-  <div *ngIf="!password.valid && (password.dirty || password.touched)">
-    <div [hidden]="!password.errors.required">
-      <p style="color: red">Password is not valid!</p>
-    </div>
-
-    <div [hidden]="!password.errors.minlength">
-      <p style="color: red">Password is min length 6!</p>
-    </div>
-  </div>
-
-  <p>
-    <label for="confirmPassword">Confirm Password: </label>
-    <input type="password" id="confirmPassword" name="confirmPassword"
-           formControlName="confirmPassword" (change)="checkConfirmPassword()">
-  </p>
-  <div *ngIf="!confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)">
-    <div [hidden]="!confirmPassword.errors.required">
-      <p style="color: red">Confirm Password is not valid!</p>
-    </div>
-
-    <div [hidden]="!confirmPassword.errors.minlength">
-      <p style="color: red">Confirm Password is min length 6!</p>
-    </div>
-
-    <div [hidden]="!confirmPassword.errors.notMatch">
-      <p style="color: red">Confirm Password and Password must be same!</p>
-    </div>
-  </div>
-
-  <p>
-    <label for="country">country </label>
-    <select id="country" name="country" formControlName="country">
-      <option *ngFor="let c of countryList" [ngValue]="c.id">
-        {{c.name}}
-      </option>
-    </select>
-  </p>
-  <div *ngIf="!country.valid && (country.dirty || country.touched)">
-    <div [hidden]="!country.errors.required">
-      <p style="color: red">Country is not valid!</p>
-    </div>
-  </div>
-
-  <p>
-    <label for="age">Age: </label>
-    <input type="text" id="age" name="age" formControlName="age">
-  </p>
-  <div *ngIf="!age.valid && (age.dirty || age.touched)">
-    <div [hidden]="!age.errors.required">
-      <p style="color: red">Age is not valid!</p>
-    </div>
-
-    <div [hidden]="!age.errors.pattern">
-      <p style="color: red">Age must greater than or equal 18!</p>
-    </div>
-  </div>
-
-  <p>
-    <label for="gender">Gender </label>
-    <input type="radio" value="male" id="gender" name="gender" formControlName="gender"> Male
-    <input type="radio" value="female" id="gender" name="gender" formControlName="gender"> Female
-  </p>
-  <div *ngIf="!gender.valid && (gender.dirty || gender.touched)">
-    <div [hidden]="!gender.errors.required">
-      <p style="color: red">Gender is not valid!</p>
-    </div>
-  </div>
-
-  <p>
-    <label for="phone">Phone: </label>
-    <input type="text" id="phone" name="phone" formControlName="phone">
-  </p>
-  <div *ngIf="!phone.valid && (phone.dirty || phone.touched)">
-    <div [hidden]="!phone.errors.required">
-      <p style="color: red">Phone is not valid!</p>
-    </div>
-
-    <div [hidden]="!phone.errors.pattern">
-      <p style="color: red">Phone invalidate</p>
-    </div>
-  </div>
-
-  <p>
-    <button type="submit" [disabled]="!registerForm.valid">Submit</button>
-  </p>
-
 </form>
-
-<!--<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>-->
-<!--  &lt;!&ndash; 2 column grid layout with text inputs for the first and last names &ndash;&gt;-->
-<!--  <div class="row mb-4">-->
-<!--    <div class="col">-->
-<!--      <div class="form-outline">-->
-<!--        <input type="text" id="form3Example1" class="form-control" />-->
-<!--        <label class="form-label" for="form3Example1">First name</label>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="col">-->
-<!--      <div class="form-outline">-->
-<!--        <input type="text" id="form3Example2" class="form-control" />-->
-<!--        <label class="form-label" for="form3Example2">Last name</label>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Email input &ndash;&gt;-->
-<!--  <div class="form-outline mb-4">-->
-<!--    <input type="email" id="form3Example3" class="form-control" />-->
-<!--    <label class="form-label" for="form3Example3">Email address</label>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Password input &ndash;&gt;-->
-<!--  <div class="form-outline mb-4">-->
-<!--    <input type="password" id="form3Example4" class="form-control" />-->
-<!--    <label class="form-label" for="form3Example4">Password</label>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Checkbox &ndash;&gt;-->
-<!--  <div class="form-check d-flex justify-content-center mb-4">-->
-<!--    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />-->
-<!--    <label class="form-check-label" for="form2Example33">-->
-<!--      Subscribe to our newsletter-->
-<!--    </label>-->
-<!--  </div>-->
-
-<!--  &lt;!&ndash; Submit button &ndash;&gt;-->
-<!--  <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>-->
-
-<!--  &lt;!&ndash; Register buttons &ndash;&gt;-->
-<!--  <div class="text-center">-->
-<!--    <p>or sign up with:</p>-->
-<!--    <button type="button" class="btn btn-primary btn-floating mx-1">-->
-<!--      <i class="fab fa-facebook-f"></i>-->
-<!--    </button>-->
-
-<!--    <button type="button" class="btn btn-primary btn-floating mx-1">-->
-<!--      <i class="fab fa-google"></i>-->
-<!--    </button>-->
-
-<!--    <button type="button" class="btn btn-primary btn-floating mx-1">-->
-<!--      <i class="fab fa-twitter"></i>-->
-<!--    </button>-->
-
-<!--    <button type="button" class="btn btn-primary btn-floating mx-1">-->
-<!--      <i class="fab fa-github"></i>-->
-<!--    </button>-->
-<!--  </div>-->
-<!--</form>-->

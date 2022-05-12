@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NavbarComponent} from "./component/layout/navbar/navbar.component";
 import {HeaderComponent} from "./component/layout/header/header.component";
 import {CreateServiceComponent} from "./component/services/create-service/create-service.component";
@@ -42,7 +42,8 @@ import { ListServiceComponent } from './component/services/list-service/list-ser
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

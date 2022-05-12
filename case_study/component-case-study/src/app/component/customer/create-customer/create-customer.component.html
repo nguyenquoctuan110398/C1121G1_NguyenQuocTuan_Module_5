@@ -11,53 +11,130 @@
 <div class="container" style="text-align: center">
   <div id="form" style="display: inline-block; text-align: left">
 
-    <form action="/customers/save" method="post">
+    <form [formGroup]="createCustomerForm" (ngSubmit)="onSubmit()" novalidate>
 
-      <label for="code">Code: </label>
-      <input type="text" id="code" name="customerCode" value="">
+      <label for="customerCode">Code: </label>
+      <input type="text" id="customerCode" name="customerCode" value="" formControlName="customerCode">
+      <div *ngIf="createCustomerForm.controls.customerCode.hasError &&
+      (createCustomerForm.controls.customerCode.touched || createCustomerForm.controls.customerCode.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerCode.hasError('required')">
+          <p class="error">Code is not valid!</p>
+        </div>
+
+        <div *ngIf="createCustomerForm.controls.customerCode.hasError('pattern')">
+          <p class="error">Wrong format! Format should be KH-XXXX</p>
+        </div>
+      </div>
 
 
       <label for="name">Name: </label>
-      <input type="text" id="name" name="customerName" value="">
+      <input type="text" id="name" name="customerName" value="" formControlName="customerName">
+      <div *ngIf="createCustomerForm.controls.customerName.hasError &&
+      (createCustomerForm.controls.customerName.touched || createCustomerForm.controls.customerName.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerName.hasError('required')">
+          <p class="error">Customer name is not valid!</p>
+        </div>
+
+        <!--        <div *ngIf="createCustomerForm.controls.customerName.hasError('pattern')">-->
+        <!--          <p class="error">Wrong format!</p>-->
+        <!--        </div>-->
+      </div>
 
 
       <label for="birthday">Birthday: </label>
-      <input type="date" id="birthday" name="customerBirthday" value="">
+      <input type="date" id="birthday" name="customerBirthday" value="" formControlName="customerBirthday">
+      <div *ngIf="createCustomerForm.controls.customerBirthday.hasError &&
+      (createCustomerForm.controls.customerBirthday.touched || createCustomerForm.controls.customerBirthday.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerBirthday.hasError('required')">
+          <p class="error">Birthday is not valid!</p>
+        </div>
+
+        <!--        <div *ngIf="createCustomerForm.controls.customerBirthday.hasError('pattern')">-->
+        <!--          <p class="error">Wrong format!</p>-->
+        <!--        </div>-->
+      </div>
 
 
       <label for="gender">Gender</label>
-      <select id="gender" name="customerGender">
+      <select id="gender" name="customerGender" formControlName="customerGender">
         <option value="0">Nữ</option>
         <option value="1">Nam</option>
       </select>
+      <div *ngIf="createCustomerForm.controls.customerGender.hasError('required') &&
+            (createCustomerForm.controls.customerGender.touched || createCustomerForm.controls.customerGender.dirty)">
+        <p class="error">Gender is not valid!</p>
+      </div>
 
       <label for="idCard">Id card: </label>
-      <input type="text" id="idCard" name="customerIdCard" value="">
+      <input type="text" id="idCard" name="customerIdCard" value="" formControlName="customerIdCard">
+      <div *ngIf="createCustomerForm.controls.customerIdCard.hasError &&
+      (createCustomerForm.controls.customerIdCard.touched || createCustomerForm.controls.customerIdCard.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerIdCard.hasError('required')">
+          <p class="error">Id card is not valid!</p>
+        </div>
+
+        <div *ngIf="createCustomerForm.controls.customerIdCard.hasError('pattern')">
+          <p class="error">Wrong format! Format should be XXXXXXXXX or XXXXXXXXXXXX(X is number)!</p>
+        </div>
+      </div>
 
 
       <label for="phone">Phone: </label>
-      <input type="text" id="phone" name="customerPhone" value="">
+      <input type="text" id="phone" name="customerPhone" value="" formControlName="customerPhone">
+      <div *ngIf="createCustomerForm.controls.customerPhone.hasError &&
+      (createCustomerForm.controls.customerPhone.touched || createCustomerForm.controls.customerPhone.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerPhone.hasError('required')">
+          <p class="error">Phone is not valid!</p>
+        </div>
+
+        <div *ngIf="createCustomerForm.controls.customerPhone.hasError('pattern')">
+          <p class="error">Wrong format! Format should be 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or
+            (84)+91xxxxxxx!</p>
+        </div>
+      </div>
 
 
       <label for="email">Email: </label>
-      <input type="text" id="email" name="customerEmail" value="">
+      <input type="text" id="email" name="customerEmail" value="" formControlName="customerEmail">
+      <div *ngIf="createCustomerForm.controls.customerEmail.hasError &&
+      (createCustomerForm.controls.customerEmail.touched || createCustomerForm.controls.customerEmail.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerEmail.hasError('required')">
+          <p class="error">Email is not valid!</p>
+        </div>
+
+        <div *ngIf="createCustomerForm.controls.customerEmail.hasError('email')">
+          <p class="error">Wrong format!</p>
+        </div>
+      </div>
 
 
       <label for="address">Address: </label>
-      <input type="text" id="address" name="customerAddress" value="">
+      <input type="text" id="address" name="customerAddress" value="" formControlName="customerAddress">
+      <div *ngIf="createCustomerForm.controls.customerAddress.hasError &&
+      (createCustomerForm.controls.customerAddress.touched || createCustomerForm.controls.customerAddress.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerAddress.hasError('required')">
+          <p class="error">Address is not valid!</p>
+        </div>
+      </div>
 
 
       <label for="customerType">Customer type: </label>
-      <select id="customerType" name="customerType">
-        <option value="1">Diamond</option>
+      <select id="customerType" name="customerTypeName" formControlName="customerTypeName">
+        <option value="1" selected>Diamond</option>
         <option value="2">Platinium</option>
         <option value="3">Gold</option>
         <option value="4">Silver</option>
         <option value="5">Member</option>
       </select>
+      <div *ngIf="createCustomerForm.controls.customerTypeName.hasError &&
+      (createCustomerForm.controls.customerTypeName.touched || createCustomerForm.controls.customerTypeName.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerTypeName.hasError('required')">
+          <p class="error">Type name is not valid!</p>
+        </div>
+      </div>
 
       <div style="text-align: center">
-        <input type="submit" value="Create">
+        <button value="Create" [disabled]="!createCustomerForm.valid" value="submit">Create</button>
       </div>
     </form>
 
