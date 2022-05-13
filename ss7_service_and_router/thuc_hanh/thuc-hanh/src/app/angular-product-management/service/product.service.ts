@@ -37,9 +37,9 @@ export class ProductService {
       price: 1895000,
       description: 'Like new'
     }
-  ]
+  ];
 
-  constructor(private productService: ProductService) {
+  constructor() {
   }
 
   getAll() {
@@ -47,12 +47,24 @@ export class ProductService {
   }
 
   saveProduct(product) {
-    // @ts-ignore
     this.products.push(product);
   }
 
-  // findById(id: number) {
-  //   return this.products.find(product => product.id == id);
-  // }
-}
+  findById(id: number) {
+    return this.products.find(product => product.id === id);
+  }
 
+  updateProduct(id: number, product: Product) {
+    for (let i = 0; i < this.products.length; i++) {
+      if (this.products[i].id === id) {
+        this.products[i] = product;
+      }
+    }
+  }
+
+  deleteProduct(id: number) {
+    this.products = this.products.filter(product => {
+      return product.id !== id;
+    });
+  }
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {SongService} from "../service/song.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
+import {SongService} from '../service/song.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-youtube-player',
