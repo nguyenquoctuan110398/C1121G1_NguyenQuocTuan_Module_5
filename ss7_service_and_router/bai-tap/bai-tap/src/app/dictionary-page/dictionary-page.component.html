@@ -1,0 +1,17 @@
+<h1>Dictionary list</h1>
+
+<table>
+  <tr>
+    <th>STT</th>
+    <th>Word</th>
+    <!--    <th>Mean</th>-->
+    <th>Detail</th>
+  </tr>
+
+  <tr *ngFor="let dictionary of dictionaryList; index as i">
+    <td>{{i + 1}}</td>
+    <td><a [routerLink]="['/dictionary/detail', dictionary.word]">{{dictionary.word}}</a></td>
+    <!--    <td>{{dictionary.mean}}</td>-->
+    <button [routerLink]="['/dictionary/detail', dictionary.word]">Detail</button>
+  </tr>
+</table>
