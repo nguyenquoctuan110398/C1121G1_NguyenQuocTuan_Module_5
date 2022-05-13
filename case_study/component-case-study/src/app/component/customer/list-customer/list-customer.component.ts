@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CustomerDao} from "../../../dao/customer/customerDao";
+import {Customer} from "../../../model/customer/customer";
+import {CustomerService} from "../../../service/customer.service";
 
 
 @Component({
@@ -9,16 +11,21 @@ import {CustomerDao} from "../../../dao/customer/customerDao";
 })
 export class ListCustomerComponent implements OnInit {
 
-  customers = CustomerDao.customers;
+  customers: Customer[] = [];
   customerNameDelete: string;
 
-  constructor() { }
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    this.getAll();
   }
 
   deleteCustomer(nameDelete: string){
     this.customerNameDelete = nameDelete;
+  }
+
+  getAll(){
+    this.customers = this.customerService.customers;
   }
 
 }

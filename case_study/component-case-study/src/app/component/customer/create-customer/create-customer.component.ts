@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ServiceDao} from "../../../dao/service/serviceDao";
+import {CustomerService} from "../../../service/customer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-customer',
@@ -10,16 +13,16 @@ export class CreateCustomerComponent implements OnInit {
 
   createCustomerForm: FormGroup;
 
-  constructor() {
+  constructor(private customerService: CustomerService, private router: Router) {
     this.createCustomerForm = new FormGroup({
       customerCode: new FormControl('', [Validators.required,
         Validators.pattern('^(KH)-\\d{4}$')]),
       customerName: new FormControl('', [Validators.required,
-      Validators.pattern('^[a-zA-Z ]{2,}$')]),
+        Validators.pattern('^[a-zA-Z ]{2,}$')]),
       customerBirthday: new FormControl('', [Validators.required]),
       customerGender: new FormControl('', [Validators.required]),
       customerIdCard: new FormControl('', [Validators.required,
-        Validators.pattern('^\\d{9}|\\d{12}')]),
+        Validators.pattern('^(\\d{9}|\\d{12})$')]),
       customerPhone: new FormControl('', [Validators.required,
         Validators.pattern('^((090)|(091)|(\\((84)\\)\\+((90)|(91))))\\d{7}$')]),
       customerEmail: new FormControl('', [Validators.required,
@@ -32,8 +35,14 @@ export class CreateCustomerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  createCustomer() {
+    const customer = this.createCustomerForm.value;
+    console.log(customer);
+    this.customerService.addCustomer(customer);
     console.log(this.createCustomerForm);
+    // this.createCustomerForm.reset();
+    // this.route.navigateByUrl('customer/list');
+    this.router.navigate(['/customer/list']);
   }
 
 }

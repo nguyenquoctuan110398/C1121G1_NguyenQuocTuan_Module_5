@@ -1,5 +1,5 @@
 export interface Contract {
-  contractId: number;
+  contractId?: number;
   contractStartDate: string;
   contractEndDate: string;
   contractDeposit: number;

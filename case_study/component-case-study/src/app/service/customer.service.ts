@@ -1,7 +1,12 @@
-import {Customer} from "../../model/customer/customer";
+import { Injectable } from '@angular/core';
+import {Customer} from "../model/customer/customer";
 
-export class CustomerDao {
-   customers: Customer [] = [
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomerService {
+
+  customers: Customer [] = [
     {
       customerId: 1,
       customerCode: "KH-1111",
@@ -46,7 +51,12 @@ export class CustomerDao {
 
   ]
 
+  constructor() { }
+
   addCustomer(customer){
+    customer.customerId = this.customers.length + 1;
+    // console.log("id" + customer.customerId);
     this.customers.push(customer);
+    // console.log(this.customers);
   }
 }

@@ -1,9 +1,7 @@
-<app-header></app-header>
-
 <h3>Add Service</h3>
 
 <p style="text-align: center;">
-  <a href="../../../../../../services/list.html" style="color: black">
+  <a routerLink="/service/list" style="color: black">
     Back to list services
   </a>
 </p>
@@ -11,10 +9,10 @@
 <div class="container" style="text-align: center">
   <div id="form" style="display: inline-block; text-align: left">
 
-    <form [formGroup]="createCustomerForm" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="createCustomerForm" (ngSubmit)="createCustomer()" novalidate>
 
       <label for="customerCode">Code: </label>
-      <input type="text" id="customerCode" name="customerCode" value="" formControlName="customerCode">
+      <input type="text" id="customerCode" name="customerCode" formControlName="customerCode">
       <div *ngIf="createCustomerForm.controls.customerCode.hasError &&
       (createCustomerForm.controls.customerCode.touched || createCustomerForm.controls.customerCode.dirty)">
         <div *ngIf="createCustomerForm.controls.customerCode.hasError('required')">
@@ -28,7 +26,7 @@
 
 
       <label for="name">Name: </label>
-      <input type="text" id="name" name="customerName" value="" formControlName="customerName">
+      <input type="text" id="name" name="customerName" formControlName="customerName">
       <div *ngIf="createCustomerForm.controls.customerName.hasError &&
       (createCustomerForm.controls.customerName.touched || createCustomerForm.controls.customerName.dirty)">
         <div *ngIf="createCustomerForm.controls.customerName.hasError('required')">
@@ -42,7 +40,7 @@
 
 
       <label for="birthday">Birthday: </label>
-      <input type="date" id="birthday" name="customerBirthday" value="" formControlName="customerBirthday">
+      <input type="date" id="birthday" name="customerBirthday" formControlName="customerBirthday">
       <div *ngIf="createCustomerForm.controls.customerBirthday.hasError &&
       (createCustomerForm.controls.customerBirthday.touched || createCustomerForm.controls.customerBirthday.dirty)">
         <div *ngIf="createCustomerForm.controls.customerBirthday.hasError('required')">
@@ -66,7 +64,7 @@
       </div>
 
       <label for="idCard">Id card: </label>
-      <input type="text" id="idCard" name="customerIdCard" value="" formControlName="customerIdCard">
+      <input type="text" id="idCard" name="customerIdCard" formControlName="customerIdCard">
       <div *ngIf="createCustomerForm.controls.customerIdCard.hasError &&
       (createCustomerForm.controls.customerIdCard.touched || createCustomerForm.controls.customerIdCard.dirty)">
         <div *ngIf="createCustomerForm.controls.customerIdCard.hasError('required')">
@@ -80,7 +78,7 @@
 
 
       <label for="phone">Phone: </label>
-      <input type="text" id="phone" name="customerPhone" value="" formControlName="customerPhone">
+      <input type="text" id="phone" name="customerPhone" formControlName="customerPhone">
       <div *ngIf="createCustomerForm.controls.customerPhone.hasError &&
       (createCustomerForm.controls.customerPhone.touched || createCustomerForm.controls.customerPhone.dirty)">
         <div *ngIf="createCustomerForm.controls.customerPhone.hasError('required')">
@@ -95,7 +93,7 @@
 
 
       <label for="email">Email: </label>
-      <input type="text" id="email" name="customerEmail" value="" formControlName="customerEmail">
+      <input type="text" id="email" name="customerEmail" formControlName="customerEmail">
       <div *ngIf="createCustomerForm.controls.customerEmail.hasError &&
       (createCustomerForm.controls.customerEmail.touched || createCustomerForm.controls.customerEmail.dirty)">
         <div *ngIf="createCustomerForm.controls.customerEmail.hasError('required')">
@@ -109,7 +107,7 @@
 
 
       <label for="address">Address: </label>
-      <input type="text" id="address" name="customerAddress" value="" formControlName="customerAddress">
+      <input type="text" id="address" name="customerAddress" formControlName="customerAddress">
       <div *ngIf="createCustomerForm.controls.customerAddress.hasError &&
       (createCustomerForm.controls.customerAddress.touched || createCustomerForm.controls.customerAddress.dirty)">
         <div *ngIf="createCustomerForm.controls.customerAddress.hasError('required')">
@@ -120,11 +118,11 @@
 
       <label for="customerType">Customer type: </label>
       <select id="customerType" name="customerTypeName" formControlName="customerTypeName">
-        <option value="1" selected>Diamond</option>
-        <option value="2">Platinium</option>
-        <option value="3">Gold</option>
-        <option value="4">Silver</option>
-        <option value="5">Member</option>
+        <option value="Diamond" selected>Diamond</option>
+        <option value="Platinium">Platinium</option>
+        <option value="Gold">Gold</option>
+        <option value="Silver">Silver</option>
+        <option value="Member">Member</option>
       </select>
       <div *ngIf="createCustomerForm.controls.customerTypeName.hasError &&
       (createCustomerForm.controls.customerTypeName.touched || createCustomerForm.controls.customerTypeName.dirty)">
@@ -140,5 +138,3 @@
 
   </div>
 </div>
-
-<app-footer></app-footer>
