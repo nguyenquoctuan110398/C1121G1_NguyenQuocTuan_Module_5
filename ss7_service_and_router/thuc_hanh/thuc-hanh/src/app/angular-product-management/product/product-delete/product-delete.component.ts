@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {ProductService} from "../../service/product.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {FormControl, FormGroup} from '@angular/forms';
+import {ProductService} from '../../service/product.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-delete',

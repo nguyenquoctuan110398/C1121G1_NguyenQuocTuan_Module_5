@@ -19,6 +19,7 @@ import { EditServiceHouseComponent } from './component/services/edit-service-hou
 import { EditServiceRoomComponent } from './component/services/edit-service-room/edit-service-room.component';
 import { EditServiceComponent } from './component/services/edit-service/edit-service.component';
 import { ListServiceComponent } from './component/services/list-service/list-service.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ListServiceComponent } from './component/services/list-service/list-ser
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

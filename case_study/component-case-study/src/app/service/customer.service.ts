@@ -1,5 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Customer} from "../model/customer/customer";
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+
+const API_URL = `${environment.apiUrl}`
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +23,12 @@ export class CustomerService {
       customerEmail: "thihao07@gmail.com",
       customerAddress: "23 Nguyễn Hoàng, Đà Nẵng",
       deleteFlag: true,
-      customerTypeName: "Member"
+      customerTypeName: "Diamond"
+      // customerType:
+      //   {
+      //     customerTypeId: 1,
+      //     customerTypeName: "Diamond"
+      //   }
     },
 
     {
@@ -33,6 +43,10 @@ export class CustomerService {
       customerAddress: "K77/22 Thái Phiên, Quảng Trị",
       deleteFlag: true,
       customerTypeName: "Member"
+      // customerType: {
+      //   customerTypeId: 5,
+      //   customerTypeName: "Member"
+      // }
     },
 
     {
@@ -47,16 +61,46 @@ export class CustomerService {
       customerAddress: "K323/12 Ông Ích Khiêm, Vinh",
       deleteFlag: true,
       customerTypeName: "Diamond"
+      // customerType: {
+      //   customerTypeId: 1,
+      //   customerTypeName: "Diamond"
+      // }
     }
 
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
-  addCustomer(customer){
+  addCustomer(customer) {
     customer.customerId = this.customers.length + 1;
     // console.log("id" + customer.customerId);
     this.customers.push(customer);
     // console.log(this.customers);
   }
+
+  findById(id: number) {
+    return this.customers.find(customer => customer.customerId == id);
+  }
+
+  deleteCustomer(id: number) {
+    // this.customers = this.customers.filter(customer => {
+    //   return customer.customerId !== id;
+    // })
+    for (let i = 0; i < this.customers.length; i++){
+      if (this.customers[i].customerId == id) {
+        this.customers.splice(i,1);
+      }
+    }
+  }
+
+  //Api webservice
+  getAll(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(API_URL + '/api/customers/list');
+  }
+
+  saveCustomer(customer): Observable<Customer> {
+    return this.http.post<Customer>(API_URL + '/api/customers/list', customer);
+  }
+
 }

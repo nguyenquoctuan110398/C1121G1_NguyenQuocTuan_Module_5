@@ -42,13 +42,19 @@
     <td>{{customer.customerEmail}}</td>
     <td>{{customer.customerAddress}}</td>
     <td>{{customer.customerTypeName}}</td>
+<!--    <td>{{customer.customerType.customerTypeName}}-->
+<!--      <p *ngIf="customer.customerType.customerTypeId == 1">Diamond</p>-->
+<!--      <p *ngIf="customer.customerType.customerTypeId == 2">Platinum</p>-->
+<!--      <p *ngIf="customer.customerType.customerTypeId == 3">Gold</p>-->
+<!--      <p *ngIf="customer.customerType.customerTypeId == 4">Silver</p>-->
+<!--      <p *ngIf="customer.customerType.customerTypeId == 5">Member</p>-->
+<!--    </td>-->
 
     <td><a href="../../../../../../customer/edit.html">Edit</a>
     </td>
 
     <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
-           (click)="deleteCustomer(customer.customerName)"
-           style="color: blue">Delete</a></td>
+           style="color: blue" (click)="getCustomerDelete(customer)">Delete</a></td>
 
     <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
     <!--        </td>-->
@@ -70,13 +76,15 @@
         <div class="modal-body">
           <p id="deleteInfor"></p>
           <p id="deleteInforNameCustomer"></p>
-          <p>Do you want delete <span style="color: red">{{customerNameDelete}}</span>?</p>
+          <p>Do you want delete <span style="color: red">{{customerDelete.customerName}}</span>?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                   id="cancelDeleteModalBtn">No
           </button>
-          <button type="submit" class="btn btn-primary" id="deleteModalBtn">Yes</button>
+          <button type="submit" class="btn btn-primary" id="deleteModalBtn"
+                  (click)="deleteCustomer(closeModal)">Yes
+          </button>
         </div>
       </div>
     </form>

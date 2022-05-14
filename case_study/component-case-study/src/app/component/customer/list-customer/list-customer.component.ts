@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {CustomerDao} from "../../../dao/customer/customerDao";
+import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../../model/customer/customer";
 import {CustomerService} from "../../../service/customer.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,19 +13,37 @@ export class ListCustomerComponent implements OnInit {
 
   customers: Customer[] = [];
   customerNameDelete: string;
+  customerDelete: Customer = {};
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getAll();
   }
 
-  deleteCustomer(nameDelete: string){
-    this.customerNameDelete = nameDelete;
+  getCustomerDelete(customer: Customer){
+    this.customerDelete = customer;
   }
 
-  getAll(){
-    this.customers = this.customerService.customers;
+  deleteCustomer(closeModal: HTMLButtonElement) {
+    this.customerService.deleteCustomer(this.customerDelete.customerId);
+    console.log(this.customerService.customers);
+
+    this.router.navigate(['/customer/list']);
+    closeModal.click();
+  }
+
+  // getAll() {
+  //   this.customers = this.customerService.customers;
+  // }
+
+  //Api service
+  getAll() {
+    this.customerService.getAll().subscribe(customers => {
+      this.customers = customers;
+      console.log(this.customers);
+    });
   }
 
 }

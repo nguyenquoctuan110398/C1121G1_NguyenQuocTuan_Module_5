@@ -35,14 +35,25 @@ export class CreateCustomerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createCustomer() {
+  // createCustomer() {
+  //   const customer = this.createCustomerForm.value;
+  //   console.log(customer);
+  //   this.customerService.addCustomer(customer);
+  //   console.log(this.createCustomerForm);
+  //   // this.createCustomerForm.reset();
+  //   // this.route.navigateByUrl('customer/list');
+  //   this.router.navigate(['/customer/list']);
+  // }
+
+  //Api webservice
+  createCustomer(){
     const customer = this.createCustomerForm.value;
-    console.log(customer);
-    this.customerService.addCustomer(customer);
-    console.log(this.createCustomerForm);
-    // this.createCustomerForm.reset();
-    // this.route.navigateByUrl('customer/list');
-    this.router.navigate(['/customer/list']);
+    this.customerService.saveCustomer(customer).subscribe(() => {
+      this.createCustomerForm.reset();
+      alert("Tạo thành công");
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

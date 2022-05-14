@@ -1,7 +1,7 @@
 import {Customer} from "../../model/customer/customer";
 
 export class CustomerDao {
-   customers: Customer [] = [
+  customers: Customer [] = [
     {
       customerId: 1,
       customerCode: "KH-1111",
@@ -13,7 +13,12 @@ export class CustomerDao {
       customerEmail: "thihao07@gmail.com",
       customerAddress: "23 Nguyễn Hoàng, Đà Nẵng",
       deleteFlag: true,
-      customerTypeName: "Member"
+      customerTypeName: "Diamond"
+      // customerType:
+      //   {
+      //     customerTypeId: 1,
+      //     customerTypeName: "Diamond"
+      //   }
     },
 
     {
@@ -28,6 +33,10 @@ export class CustomerDao {
       customerAddress: "K77/22 Thái Phiên, Quảng Trị",
       deleteFlag: true,
       customerTypeName: "Member"
+      // customerType: {
+      //   customerTypeId: 5,
+      //   customerTypeName: "Member"
+      // }
     },
 
     {
@@ -42,11 +51,15 @@ export class CustomerDao {
       customerAddress: "K323/12 Ông Ích Khiêm, Vinh",
       deleteFlag: true,
       customerTypeName: "Diamond"
+      // customerType: {
+      //   customerTypeId: 1,
+      //   customerTypeName: "Diamond"
+      // }
     }
 
   ]
 
-  addCustomer(customer){
+  addCustomer(customer) {
     this.customers.push(customer);
   }
 }
