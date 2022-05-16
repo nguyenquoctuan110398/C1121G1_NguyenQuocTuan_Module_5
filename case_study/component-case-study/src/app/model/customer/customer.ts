@@ -11,6 +11,6 @@ export interface Customer {
   customerEmail?: string;
   customerAddress?: string;
   deleteFlag?: boolean;
-  // customerType?: CustomerType;
-  customerTypeName?: string;
+  customerType?: CustomerType;
+  // customerTypeName?: string;
 }

@@ -1,0 +1,37 @@
+<h1>Create product</h1>
+
+<form [formGroup]="createProductForm" (ngSubmit)="submit()">
+  <table>
+    <tr>
+      <td>Id:</td>
+      <td><input type="text" formControlName="id"></td>
+    </tr>
+
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+
+    <tr>
+      <td>Price:</td>
+      <td><input type="text" formControlName="price"></td>
+    </tr>
+
+    <tr>
+      <td>Category:</td>
+      <td>
+<!--        <select formControlName="category" [compareWith]="compareFn">-->
+        <select formControlName="category">
+          <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>
+        <button>Create</button>
+      </td>
+    </tr>
+  </table>
+</form>

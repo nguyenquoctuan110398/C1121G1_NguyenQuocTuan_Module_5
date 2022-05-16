@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ServiceDao} from "../../../dao/service/serviceDao";
-import {CustomerService} from "../../../service/customer.service";
 import {Router} from "@angular/router";
+import {CustomerService} from "../../../service/customer/customer.service";
+import {CustomerType} from "../../../model/customer/customer-type";
+import {CustomerTypeService} from "../../../service/customer/customer-type.service";
 
 @Component({
   selector: 'app-create-customer',
@@ -11,9 +12,13 @@ import {Router} from "@angular/router";
 })
 export class CreateCustomerComponent implements OnInit {
 
+  customerTypes: CustomerType[] = [];
+
+
   createCustomerForm: FormGroup;
 
-  constructor(private customerService: CustomerService, private router: Router) {
+  constructor(private customerService: CustomerService, private router: Router,
+              private customerTypeService: CustomerTypeService) {
     this.createCustomerForm = new FormGroup({
       customerCode: new FormControl('', [Validators.required,
         Validators.pattern('^(KH)-\\d{4}$')]),
@@ -28,11 +33,16 @@ export class CreateCustomerComponent implements OnInit {
       customerEmail: new FormControl('', [Validators.required,
         Validators.email]),
       customerAddress: new FormControl('', [Validators.required]),
-      customerTypeName: new FormControl('', [Validators.required])
+      customerType: new FormControl('', [Validators.required])
     })
   }
 
   ngOnInit(): void {
+    this.getAllCustomerType();
+  }
+
+  getAllCustomerType(){
+    this.customerTypes = this.customerTypeService.customerTypes
   }
 
   // createCustomer() {

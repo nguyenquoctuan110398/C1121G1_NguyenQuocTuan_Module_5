@@ -13,12 +13,12 @@ export class CustomerDao {
       customerEmail: "thihao07@gmail.com",
       customerAddress: "23 Nguyễn Hoàng, Đà Nẵng",
       deleteFlag: true,
-      customerTypeName: "Diamond"
-      // customerType:
-      //   {
-      //     customerTypeId: 1,
-      //     customerTypeName: "Diamond"
-      //   }
+      // customerTypeName: "Diamond"
+      customerType:
+        {
+          customerTypeId: 1,
+          customerTypeName: "Diamond"
+        }
     },
 
     {
@@ -32,11 +32,11 @@ export class CustomerDao {
       customerEmail: "xuandieu92@gmail.com",
       customerAddress: "K77/22 Thái Phiên, Quảng Trị",
       deleteFlag: true,
-      customerTypeName: "Member"
-      // customerType: {
-      //   customerTypeId: 5,
-      //   customerTypeName: "Member"
-      // }
+      // customerTypeName: "Member"
+      customerType: {
+        customerTypeId: 5,
+        customerTypeName: "Member"
+      }
     },
 
     {
@@ -50,11 +50,11 @@ export class CustomerDao {
       customerEmail: "nghenhan2702@gmail.com",
       customerAddress: "K323/12 Ông Ích Khiêm, Vinh",
       deleteFlag: true,
-      customerTypeName: "Diamond"
-      // customerType: {
-      //   customerTypeId: 1,
-      //   customerTypeName: "Diamond"
-      // }
+      // customerTypeName: "Diamond"
+      customerType: {
+        customerTypeId: 1,
+        customerTypeName: "Diamond"
+      }
     }
 
   ]

@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Customer} from "../model/customer/customer";
-import {environment} from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import {Customer} from "../../model/customer/customer";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 const API_URL = `${environment.apiUrl}`
 
@@ -23,12 +23,12 @@ export class CustomerService {
       customerEmail: "thihao07@gmail.com",
       customerAddress: "23 Nguyễn Hoàng, Đà Nẵng",
       deleteFlag: true,
-      customerTypeName: "Diamond"
-      // customerType:
-      //   {
-      //     customerTypeId: 1,
-      //     customerTypeName: "Diamond"
-      //   }
+      // customerTypeName: "Diamond"
+      customerType:
+        {
+          customerTypeId: 1,
+          customerTypeName: "Diamond"
+        }
     },
 
     {
@@ -42,11 +42,11 @@ export class CustomerService {
       customerEmail: "xuandieu92@gmail.com",
       customerAddress: "K77/22 Thái Phiên, Quảng Trị",
       deleteFlag: true,
-      customerTypeName: "Member"
-      // customerType: {
-      //   customerTypeId: 5,
-      //   customerTypeName: "Member"
-      // }
+      // customerTypeName: "Member"
+      customerType: {
+        customerTypeId: 5,
+        customerTypeName: "Member"
+      }
     },
 
     {
@@ -60,17 +60,15 @@ export class CustomerService {
       customerEmail: "nghenhan2702@gmail.com",
       customerAddress: "K323/12 Ông Ích Khiêm, Vinh",
       deleteFlag: true,
-      customerTypeName: "Diamond"
-      // customerType: {
-      //   customerTypeId: 1,
-      //   customerTypeName: "Diamond"
-      // }
+      // customerTypeName: "Diamond"
+      customerType: {
+        customerTypeId: 1,
+        customerTypeName: "Diamond"
+      }
     }
-
   ]
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   addCustomer(customer) {
     customer.customerId = this.customers.length + 1;
@@ -94,13 +92,13 @@ export class CustomerService {
     }
   }
 
+
   //Api webservice
   getAll(): Observable<Customer[]> {
     return this.http.get<Customer[]>(API_URL + '/api/customers/list');
   }
 
   saveCustomer(customer): Observable<Customer> {
-    return this.http.post<Customer>(API_URL + '/api/customers/list', customer);
+    return this.http.post<Customer>(API_URL + '/api/customers/save', customer);
   }
-
 }

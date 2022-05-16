@@ -117,16 +117,16 @@
 
 
       <label for="customerType">Customer type: </label>
-      <select id="customerType" name="customerTypeName" formControlName="customerTypeName">
-        <option value="Diamond" selected>Diamond</option>
-        <option value="Platinium">Platinium</option>
-        <option value="Gold">Gold</option>
-        <option value="Silver">Silver</option>
-        <option value="Member">Member</option>
+      <select id="customerType" name="customerType" formControlName="customerType">
+        <option value="1">Diamond</option>
+        <option value="2">Platinum</option>
+        <option value="3">Gold</option>
+        <option value="4">Silver</option>
+        <option value="5">Member</option>
       </select>
-      <div *ngIf="createCustomerForm.controls.customerTypeName.hasError &&
-      (createCustomerForm.controls.customerTypeName.touched || createCustomerForm.controls.customerTypeName.dirty)">
-        <div *ngIf="createCustomerForm.controls.customerTypeName.hasError('required')">
+      <div *ngIf="createCustomerForm.controls.customerType.hasError &&
+      (createCustomerForm.controls.customerType.touched || createCustomerForm.controls.customerType.dirty)">
+        <div *ngIf="createCustomerForm.controls.customerType.hasError('required')">
           <p class="error">Type name is not valid!</p>
         </div>
       </div>

@@ -1,0 +1,35 @@
+<h1>Edit product</h1>
+<form [formGroup]="editProductForm" (ngSubmit)="updateProduct(id)">
+  <table>
+    <tr>
+      <td>Id:</td>
+      <td><input type="number" formControlName="id" readonly></td>
+    </tr>
+
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+
+    <tr>
+      <td>Price:</td>
+      <td><input type="number" formControlName="price"></td>
+    </tr>
+
+    <tr>
+      <td>Category</td>
+      <td>
+        <select [compareWith]="compareFn" formControlName="category">
+          <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>
+        <button>Edit</button>
+      </td>
+    </tr>
+  </table>
+</form>

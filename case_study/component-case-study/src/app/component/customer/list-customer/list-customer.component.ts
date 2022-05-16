@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from "../../../model/customer/customer";
-import {CustomerService} from "../../../service/customer.service";
+
 import {Router} from "@angular/router";
+import {CustomerService} from "../../../service/customer/customer.service";
 
 
 @Component({

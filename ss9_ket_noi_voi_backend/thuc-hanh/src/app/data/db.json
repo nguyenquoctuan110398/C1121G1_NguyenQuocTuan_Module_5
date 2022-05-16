@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Hacker Lược Sử",
+      "price": 120000,
+      "category": {
+        "id": 1,
+        "name": "Social"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Vũ trụ trong một nguyên tử",
+      "price": 150000,
+      "category": {
+        "id": 2,
+        "name": "Science"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Social"
+    },
+    {
+      "id": 2,
+      "name": "Science"
+    },
+    {
+      "id": 3,
+      "name": "Comic"
+    }
+  ]
+}
