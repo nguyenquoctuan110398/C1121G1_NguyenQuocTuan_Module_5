@@ -118,11 +118,9 @@
 
       <label for="customerType">Customer type: </label>
       <select id="customerType" name="customerType" formControlName="customerType">
-        <option value="1">Diamond</option>
-        <option value="2">Platinum</option>
-        <option value="3">Gold</option>
-        <option value="4">Silver</option>
-        <option value="5">Member</option>
+        <option *ngFor="let customerType of customerTypes" [ngValue]="customerType">
+          {{customerType.customerTypeName}}
+        </option>
       </select>
       <div *ngIf="createCustomerForm.controls.customerType.hasError &&
       (createCustomerForm.controls.customerType.touched || createCustomerForm.controls.customerType.dirty)">

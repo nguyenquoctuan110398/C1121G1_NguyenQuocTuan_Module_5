@@ -31,7 +31,7 @@ export class ListCustomerComponent implements OnInit {
     this.customerService.deleteCustomer(this.customerDelete.customerId);
     console.log(this.customerService.customers);
 
-    this.router.navigate(['/customer/list']);
+    this.router.navigate(['/customers/list']);
     closeModal.click();
   }
 

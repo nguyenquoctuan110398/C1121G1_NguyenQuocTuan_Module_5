@@ -38,7 +38,9 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCustomerType();
+    // this.getAllCustomerType();
+    this.getCustomerTypeAll();
+    console.log(this.customerTypes);
   }
 
   getAllCustomerType(){
@@ -58,11 +60,21 @@ export class CreateCustomerComponent implements OnInit {
   //Api webservice
   createCustomer(){
     const customer = this.createCustomerForm.value;
+    console.log(customer);
     this.customerService.saveCustomer(customer).subscribe(() => {
-      this.createCustomerForm.reset();
-      alert("Tạo thành công");
+      // this.createCustomerForm.reset();
+      // alert("Tạo thành công");
+      this.router.navigateByUrl('/customers/list');
     }, error => {
-      console.log(error);
+      alert('Gà');
+    });
+  }
+
+  //Api service
+  getCustomerTypeAll() {
+    this.customerTypeService.getAll().subscribe(customerTypes => {
+      this.customerTypes = customerTypes;
+      console.log(this.customerTypes);
     });
   }
 

@@ -1,0 +1,26 @@
+<h1 style="text-align: center">Todo list</h1>
+<a class="btn btn-outline-success" routerLink="/todos/create">Add new todo</a>
+<table class="table">
+  <thead>
+  <tr>
+    <td scope="col">STT</td>
+    <td scope="col">Content</td>
+    <td scope="col">Complete</td>
+    <td scope="col" colspan="2"></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let todo of todos; index as i">
+    <td scope="row">{{i + 1}}</td>
+    <td>{{todo.content}}</td>
+    <td *ngIf="todo.complete == false">No done</td>
+    <td *ngIf="todo.complete == true">Done</td>
+    <td *ngIf="todo.complete == null"></td>
+
+    <td><a [routerLink]="['/todos/edit', todo.id]"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
+    <td><a [routerLink]="['/todos/delete', todo.id]"><i class="fa-solid fa-trash-can" style="color: red"></i>
+      Delete</a></td>
+  </tr>
+  </tbody>
+
+</table>

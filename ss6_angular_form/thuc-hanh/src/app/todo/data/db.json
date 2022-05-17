@@ -1,0 +1,14 @@
+{
+  "todos": [
+    {
+      "content": "Play game",
+      "id": 1,
+      "complete": true
+    },
+    {
+      "id": 2,
+      "content": "Play badminton",
+      "complete": false
+    }
+  ]
+}

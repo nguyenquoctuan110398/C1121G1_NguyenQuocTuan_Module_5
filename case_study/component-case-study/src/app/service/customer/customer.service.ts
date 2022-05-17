@@ -77,9 +77,9 @@ export class CustomerService {
     // console.log(this.customers);
   }
 
-  findById(id: number) {
-    return this.customers.find(customer => customer.customerId == id);
-  }
+  // findById(id: number) {
+  //   return this.customers.find(customer => customer.customerId == id);
+  // }
 
   deleteCustomer(id: number) {
     // this.customers = this.customers.filter(customer => {
@@ -100,5 +100,13 @@ export class CustomerService {
 
   saveCustomer(customer): Observable<Customer> {
     return this.http.post<Customer>(API_URL + '/api/customers/save', customer);
+  }
+
+  findById(customerId: number): Observable<Customer> {
+    return this.http.get<Customer>(API_URL + '/api/customers/edit/' + customerId);
+  }
+
+  updateCustomer(customer: Customer): Observable<Customer> {
+    return this.http.patch<Customer>(API_URL + '/api/customers/update', customer);
   }
 }

@@ -1,11 +1,11 @@
 <h3>Customer</h3>
+<!--<h4>-->
+<!--  <a href="/customers/customer-list-using-service">-->
+<!--    List of customers who are using the service-->
+<!--  </a>-->
+<!--</h4>-->
 <h4>
-  <a href="/customers/customer-list-using-service">
-    List of customers who are using the service
-  </a>
-</h4>
-<h4>
-  <a routerLink="/customer/create">
+  <a routerLink="/customers/create">
     Add new customer
   </a>
 </h4>
@@ -50,7 +50,7 @@
 <!--      <p *ngIf="customer.customerType.customerTypeId == 5">Member</p>-->
 <!--    </td>-->
 
-    <td><a href="../../../../../../customer/edit.html">Edit</a>
+    <td><a [routerLink]="['/customers/edit/', customer.customerId]">Edit</a>
     </td>
 
     <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"

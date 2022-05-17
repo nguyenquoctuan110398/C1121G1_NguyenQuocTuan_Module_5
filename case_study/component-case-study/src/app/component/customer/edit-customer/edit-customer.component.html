@@ -14,12 +14,12 @@
   <div id="form" style="display: inline-block; text-align: left">
 
     <!--    <form action="/customers/update" method="post">-->
-    <form [formGroup]="editCustomerForm" (ngSubmit)="onSubmit()" novalidate>
-      <input type="hidden" id="customerId" name="customerId" value="1" formControlName="customerId">
+    <form [formGroup]="editCustomerForm" (ngSubmit)="updateCustomer()" novalidate>
+      <input type="hidden" id="customerId" name="customerId" formControlName="customerId">
 
       <div>
         <label for="code">Code: </label>
-        <input readonly type="text" id="code" name="customerCode" value="KH-1111" formControlName="customerCode">
+        <input readonly type="text" id="code" name="customerCode"  formControlName="customerCode">
       </div>
       <div *ngIf="editCustomerForm.controls.customerCode.hasError &&
       (editCustomerForm.controls.customerCode.touched || editCustomerForm.controls.customerCode.dirty)">
@@ -34,7 +34,7 @@
 
       <div>
         <label for="name">Name: </label>
-        <input type="text" id="name" name="customerName" value="Nguyễn Thị Hào" formControlName="customerName">
+        <input type="text" id="name" name="customerName" formControlName="customerName">
       </div>
       <div *ngIf="editCustomerForm.controls.customerName.hasError &&
       (editCustomerForm.controls.customerName.touched || editCustomerForm.controls.customerName.dirty)">
@@ -49,7 +49,7 @@
 
       <div>
         <label for="birthday">Birthday: </label>
-        <input type="date" id="birthday" name="customerBirthday" value="1970-11-07" formControlName="customerBirthday">
+        <input type="date" id="birthday" name="customerBirthday" formControlName="customerBirthday">
       </div>
       <div *ngIf="editCustomerForm.controls.customerBirthday.hasError &&
       (editCustomerForm.controls.customerBirthday.touched || editCustomerForm.controls.customerBirthday.dirty)">
@@ -76,7 +76,7 @@
 
       <div>
         <label for="idCard">Id card: </label>
-        <input type="text" id="idCard" name="customerIdCard" value="111111111" formControlName="customerIdCard">
+        <input type="text" id="idCard" name="customerIdCard" formControlName="customerIdCard">
       </div>
       <div *ngIf="editCustomerForm.controls.customerIdCard.hasError &&
       (editCustomerForm.controls.customerIdCard.touched || editCustomerForm.controls.customerIdCard.dirty)">
@@ -91,7 +91,7 @@
 
       <div>
         <label for="phone">Phone: </label>
-        <input type="text" id="phone" name="customerPhone" value="0914545999" formControlName="customerPhone">
+        <input type="text" id="phone" name="customerPhone" formControlName="customerPhone">
       </div>
       <div *ngIf="editCustomerForm.controls.customerPhone.hasError &&
       (editCustomerForm.controls.customerPhone.touched || editCustomerForm.controls.customerPhone.dirty)">
@@ -107,7 +107,7 @@
 
       <div>
         <label for="email">Email: </label>
-        <input type="text" id="email" name="customerEmail" value="thihao07@gmail.com"
+        <input type="text" id="email" name="customerEmail"
                formControlName="customerEmail">
       </div>
       <div *ngIf="editCustomerForm.controls.customerEmail.hasError &&
@@ -123,7 +123,7 @@
 
       <div>
         <label for="address">Address: </label>
-        <input type="text" id="address" name="customerAddress" value="23 Nguyễn Hoàng, Đà Nẵng"
+        <input type="text" id="address" name="customerAddress"
                formControlName="customerAddress">
       </div>
       <div *ngIf="editCustomerForm.controls.customerAddress.hasError &&
@@ -134,22 +134,21 @@
       </div>
 
       <div>
-        <input type="hidden" id="deleteFlag" name="deleteFlag" value="true" formControlName="deleteFlag">
+        <input type="hidden" id="deleteFlag" name="deleteFlag" formControlName="deleteFlag">
       </div>
 
       <div>
         <label for="customerType">Customer type: </label>
-        <select id="customerType" name="customerTypeName" formControlName="customerTypeName">
-          <option value="1">Diamond</option>
-          <option value="2">Platinium</option>
-          <option value="3">Gold</option>
-          <option value="4">Silver</option>
-          <option value="5" selected="selected">Member</option>
+        <select id="customerType" name="customerType"
+                formControlName="customerType" [compareWith]="compareFn">
+          <option *ngFor="let customerType of customerTypes" [ngValue]="customerType">
+            {{customerType.customerTypeName}}
+          </option>
         </select>
       </div>
-      <div *ngIf="editCustomerForm.controls.customerTypeName.hasError &&
-      (editCustomerForm.controls.customerTypeName.touched || editCustomerForm.controls.customerTypeName.dirty)">
-        <div *ngIf="editCustomerForm.controls.customerTypeName.hasError('required')">
+      <div *ngIf="editCustomerForm.controls.customerType.hasError &&
+      (editCustomerForm.controls.customerType.touched || editCustomerForm.controls.customerType.dirty)">
+        <div *ngIf="editCustomerForm.controls.customerType.hasError('required')">
           <p class="error">Type name is not valid!</p>
         </div>
       </div>
