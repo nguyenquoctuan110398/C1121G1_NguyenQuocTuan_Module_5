@@ -9,6 +9,9 @@ import { ImgSlideComponent } from './img-slide/img-slide.component';
   declarations: [ImgSliderComponent, ImgSlideComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ImgSlideComponent
   ]
 })
 export class ImgSliderModule { }
