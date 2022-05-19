@@ -20,6 +20,7 @@ import { EditServiceRoomComponent } from './component/services/edit-service-room
 import { EditServiceComponent } from './component/services/edit-service/edit-service.component';
 import { ListServiceComponent } from './component/services/list-service/list-service.component';
 import {HttpClientModule} from "@angular/common/http";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

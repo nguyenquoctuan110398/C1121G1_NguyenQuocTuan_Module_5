@@ -5,66 +5,104 @@
 <!--    </a>-->
 <!--</h4>-->
 
+<!--<button class="btn btn-primary" type="button">-->
+<!--  <a style="color: black" class="delete_btn"-->
+<!--     data-mdb-toggle="modal" data-mdb-target="#addService">FACILITY</a>-->
+<!--</button>-->
+
 <button class="btn btn-primary" type="button">
-  <a style="color: black" class="delete_btn"
-     data-mdb-toggle="modal" data-mdb-target="#addService">FACILITY</a>
+  <a style="color: black" class="delete_btn" routerLink="/services/create"
+     data-mdb-target="#addService">Create facility</a>
 </button>
+
+<input type="text" class="form-control" name="name" [(ngModel)]="name" (ngModelChange)="search()"
+       placeholder="Enter name to search">
+
 
 <div class="notify">
 
 </div>
 
-<table id="services">
+<div *ngIf="check == false">
+  <h3>Không tìm thấy!</h3>
+</div>
 
-  <thead>
-  <tr>
-    <th>Service id</th>
-    <th>Service code</th>
-    <th>Service name</th>
-    <th>Service area</th>
-    <th>Service cost</th>
-    <th>Service max people</th>
-    <th>Standard room</th>
-    <th>Description other convenience</th>
-    <th>Pool area</th>
-    <th>Number floor</th>
-    <th>Rent type name</th>
-    <th>Service type name</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  </thead>
+<div *ngIf="check == true">
+  <table id="services">
 
-  <tbody *ngFor="let service of services">
-  <tr>
-    <td>{{service.serviceId}}</td>
-    <td>{{service.serviceCost}}</td>
-    <td>{{service.serviceName}}</td>
-    <td>{{service.serviceArea}}</td>
-    <td>{{service.serviceCost}}</td>
-    <td>{{service.serviceMaxPeople}}</td>
-    <td>{{service.standardRoom}}</td>
-    <td>{{service.descriptionOtherConvenience}}</td>
-    <td>{{service.poolArea}}</td>
-    <td>{{service.numberOfFloors}}</td>
-    <td>{{service.rentTypeName}}</td>
-    <td>{{service.serviceTypeName}}</td>
+    <thead>
+    <tr>
+      <th>Service id</th>
+      <th>Service code</th>
+      <th>Service name</th>
+      <th>Service area</th>
+      <th>Service cost</th>
+      <th>Service max people</th>
+      <th>Standard room</th>
+      <th>Description other convenience</th>
+      <th>Pool area</th>
+      <th>Number floor</th>
+      <th>Rent type name</th>
+      <th>Service type name</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
 
-    <td><a href="../../../../../services/edit.html">Edit</a>
-    </td>
+    <tbody *ngFor="let service of serviceList">
+    <tr>
+      <td>{{service.id}}</td>
+      <td>{{service.serviceCost}}</td>
+      <td>{{service.serviceName}}</td>
+      <td>{{service.serviceArea}}</td>
+      <td>{{service.serviceCost}}</td>
+      <td>{{service.serviceMaxPeople}}</td>
+      <td>{{service.standardRoom}}</td>
+      <td>{{service.descriptionOtherConvenience}}</td>
+      <td>{{service.poolArea}}</td>
+      <td>{{service.numberOfFloors}}</td>
+      <td>{{service.rentType.rentTypeName}}</td>
+      <td>{{service.serviceType.serviceTypeName}}</td>
 
-    <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
-           onclick="deleteModal($(this))"
-           style="color: blue">Delete</a></td>
+      <td><a [routerLink]="['/services/edit', service.id]">Edit</a>
+      </td>
 
-    <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
-    <!--        </td>-->
-  </tr>
-  </tbody>
+      <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
+             (click)="getServiceDelete(service.id)"
+             style="color: blue">Delete</a></td>
 
-</table>
+      <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
+      <!--        </td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-<div>
-  <span>1</span>/<span>3</span>
-  <a href="/services/list/?page=1">Next</a>
+<!--Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="/customers/delete" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <input type="text" id="deleteByCustomerId" name="deleteByCustomerId">
+        <div class="modal-body">
+          <p id="deleteInfor"></p>
+          <p id="deleteInforNameCustomer"></p>
+          <p>Do you want delete
+            <span style="color: red" id="customerNameDelete">{{serviceDelete.serviceName}}</span>?</p>
+        </div>
+        <div class="modal-footer">
+          <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                  id="cancelDeleteModalBtn">No
+          </button>
+          <button type="submit" class="btn btn-primary" id="deleteModalBtn"
+                  (click)="delete(closeModal)">Yes
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

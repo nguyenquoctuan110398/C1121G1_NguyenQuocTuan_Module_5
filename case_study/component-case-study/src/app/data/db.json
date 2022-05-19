@@ -1,0 +1,104 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "serviceCode": "DV-0001",
+      "serviceName": "Villa Beach Front",
+      "serviceArea": "25000",
+      "serviceCost": "10000000",
+      "serviceMaxPeople": "10",
+      "standardRoom": "vip",
+      "descriptionOtherConvenience": "Ăn sáng",
+      "poolArea": "500",
+      "numberOfFloors": "4",
+      "serviceType": {
+        "id": 1,
+        "serviceTypeName": "Villa"
+      },
+      "rentType": {
+        "id": 3,
+        "rentTypeCost": 400000,
+        "rentTypeName": "day"
+      }
+    },
+    {
+      "id": 2,
+      "serviceCode": "DV-0002",
+      "serviceName": "House Princess 01",
+      "serviceArea": "14000",
+      "serviceCost": "5000000",
+      "serviceMaxPeople": "7",
+      "standardRoom": "vip",
+      "descriptionOtherConvenience": "Có thêm Bếp Nướng",
+      "numberOfFloors": "4",
+      "serviceType": {
+        "id": 2,
+        "serviceTypeName": "House"
+      },
+      "rentType": {
+        "id": 2,
+        "rentTypeCost": 2000000,
+        "rentTypeName": "month"
+      },
+      "poolArea": "500"
+    },
+    {
+      "id": 3,
+      "serviceCode": "DV-0003",
+      "serviceName": "Room Twin",
+      "serviceArea": "5000",
+      "serviceCost": "2200000",
+      "serviceMaxPeople": "2",
+      "standardRoom": "normal",
+      "descriptionOtherConvenience": "Có TV",
+      "serviceType": {
+        "id": 3,
+        "serviceTypeName": "Room"
+      },
+      "rentType": {
+        "id": 4,
+        "rentTypeCost": 100000,
+        "rentTypeName": "hour"
+      },
+      "poolArea": "500",
+      "numberOfFloors": "4"
+    }
+  ],
+
+  "serviceType": [
+    {
+      "id": 1,
+      "serviceTypeName": "Villa"
+    },
+    {
+      "id": 2,
+      "serviceTypeName": "House"
+    },
+    {
+      "id": 3,
+      "serviceTypeName": "Room"
+    }
+  ],
+  "rentType": [
+    {
+      "id": 1,
+      "rentTypeCost": 20000000,
+      "rentTypeName": "year"
+    },
+    {
+      "id": 2,
+      "rentTypeCost": 2000000,
+      "rentTypeName": "month"
+    },
+    {
+      "id": 3,
+      "rentTypeCost": 400000,
+      "rentTypeName": "day"
+    },
+    {
+      "id": 4,
+      "rentTypeCost": 100000,
+      "rentTypeName": "hour"
+    }
+  ]
+}

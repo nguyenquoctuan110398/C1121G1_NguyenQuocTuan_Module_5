@@ -1,5 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {RentType} from "../../../model/services/rent-type";
+import {ServicesService} from "../../../service/services/services.service";
+import {RentTypeService} from "../../../service/services/rent-type.service";
+import {Router} from "@angular/router";
+import {ServiceType} from "../../../model/services/service-type";
+import {ServiceTypeService} from "../../../service/services/service-type.service";
+import {CustomerType} from "../../../model/customer/customer-type";
 
 @Component({
   selector: 'app-create-service',
@@ -8,11 +15,17 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class CreateServiceComponent implements OnInit {
 
-  serviceType: string;
 
   createServiceForm: FormGroup
 
-  constructor() {
+  rentTypes: RentType[] = [];
+  serviceType: ServiceType = new ServiceType();
+
+  constructor(private servicesService: ServicesService,
+              private rentTypeService: RentTypeService,
+              private serviceTypeService: ServiceTypeService,
+              private router: Router) {
+
     this.createServiceForm = new FormGroup({
       serviceCode: new FormControl('', [Validators.required,
         Validators.pattern('^(DV)-\\d{4}$')]),
@@ -30,31 +43,54 @@ export class CreateServiceComponent implements OnInit {
         Validators.pattern('^[1-9]\\d*.\\d*$')]),
       numberOfFloors: new FormControl('', [Validators.required,
         Validators.pattern('^[1-9]\\d{0,1}$')]),
-      // serviceTypeName: new FormControl('', [Validators.required]),
-      rentTypeName: new FormControl('', [Validators.required])
+      serviceType: new FormControl('', [Validators.required]),
+      rentType: new FormControl('', [Validators.required])
     })
   }
 
+  compareFn(t1: ServiceType, t2: ServiceType): boolean {
+    return t1 && t2 ? t1.id === t2.id : t1 === t2;
+  }
+
   ngOnInit(): void {
+    this.getAllRentType();
   }
 
   chooseServiceType(target: any) {
-    this.serviceType = target.value;
+    console.log("hihi" + target.value);
+    this.serviceTypeService.findById(target.value).subscribe(serviceType => {
+      this.serviceType = serviceType;
+      console.log(serviceType);
+      if (this.serviceType.id != 1) {
+        if (this.serviceType.id != 2) {
 
-    if (this.serviceType != '1') {
-      if (this.serviceType != '2') {
+          this.createServiceForm.controls.standardRoom.clearValidators();
+          this.createServiceForm.controls.standardRoom.updateValueAndValidity();
 
-        this.createServiceForm.controls.standardRoom.clearValidators();
-        this.createServiceForm.controls.standardRoom.updateValueAndValidity();
+          this.createServiceForm.controls.descriptionOtherConvenience.clearValidators();
+          this.createServiceForm.controls.descriptionOtherConvenience.updateValueAndValidity();
 
-        this.createServiceForm.controls.descriptionOtherConvenience.clearValidators();
-        this.createServiceForm.controls.descriptionOtherConvenience.updateValueAndValidity();
+          this.createServiceForm.controls.numberOfFloors.clearValidators();
+          this.createServiceForm.controls.numberOfFloors.updateValueAndValidity();
 
-        this.createServiceForm.controls.numberOfFloors.clearValidators();
-        this.createServiceForm.controls.numberOfFloors.updateValueAndValidity();
+          this.createServiceForm.controls.poolArea.clearValidators();
+          this.createServiceForm.controls.poolArea.updateValueAndValidity();
 
-        this.createServiceForm.controls.poolArea.clearValidators();
-        this.createServiceForm.controls.poolArea.updateValueAndValidity();
+        } else {
+
+          this.createServiceForm.controls.standardRoom.setValidators([Validators.required]);
+          this.createServiceForm.controls.standardRoom.updateValueAndValidity();
+
+          this.createServiceForm.controls.descriptionOtherConvenience.setValidators([Validators.required]);
+          this.createServiceForm.controls.descriptionOtherConvenience.updateValueAndValidity();
+
+          this.createServiceForm.controls.numberOfFloors.setValidators([Validators.required, Validators.pattern('^[1-9]\\d{0,1}$')]);
+          this.createServiceForm.controls.numberOfFloors.updateValueAndValidity();
+
+          this.createServiceForm.controls.poolArea.clearValidators();
+          this.createServiceForm.controls.poolArea.updateValueAndValidity();
+
+        }
 
       } else {
 
@@ -67,34 +103,20 @@ export class CreateServiceComponent implements OnInit {
         this.createServiceForm.controls.numberOfFloors.setValidators([Validators.required, Validators.pattern('^[1-9]\\d{0,1}$')]);
         this.createServiceForm.controls.numberOfFloors.updateValueAndValidity();
 
-        this.createServiceForm.controls.poolArea.clearValidators();
+        this.createServiceForm.controls.poolArea.setValidators([Validators.required,
+          Validators.pattern('^[1-9]\\d*.\\d*$')]);
         this.createServiceForm.controls.poolArea.updateValueAndValidity();
-
       }
+    })
 
-    } else {
 
-      this.createServiceForm.controls.standardRoom.setValidators([Validators.required]);
-      this.createServiceForm.controls.standardRoom.updateValueAndValidity();
-
-      this.createServiceForm.controls.descriptionOtherConvenience.setValidators([Validators.required]);
-      this.createServiceForm.controls.descriptionOtherConvenience.updateValueAndValidity();
-
-      this.createServiceForm.controls.numberOfFloors.setValidators([Validators.required, Validators.pattern('^[1-9]\\d{0,1}$')]);
-      this.createServiceForm.controls.numberOfFloors.updateValueAndValidity();
-
-      this.createServiceForm.controls.poolArea.setValidators([Validators.required,
-        Validators.pattern('^[1-9]\\d*.\\d*$')]);
-      this.createServiceForm.controls.poolArea.updateValueAndValidity();
-    }
-
-    if (this.serviceType == '1') {
-      this.createServiceForm.value.serviceTypeName = 'Villa';
-    } else if (this.serviceType == '2') {
-      this.createServiceForm.value.serviceTypeName = 'House';
-    } else if (this.serviceType == '3') {
-      this.createServiceForm.value.serviceTypeName = 'Room';
-    }
+    // if (this.serviceType.serviceTypeId == 1) {
+    //   this.createServiceForm.value.serviceTypeName = 'Villa';
+    // } else if (this.serviceType.serviceTypeId == 2) {
+    //   this.createServiceForm.value.serviceTypeName = 'House';
+    // } else if (this.serviceType.serviceTypeId == 3) {
+    //   this.createServiceForm.value.serviceTypeName = 'Room';
+    // }
 
 
 
@@ -110,13 +132,33 @@ export class CreateServiceComponent implements OnInit {
   //
   // }
 
-  getServiceTypeName() {
-    if (this.serviceType == '1') {
-      this.createServiceForm.value.serviceTypeName = 'Villa';
-    } else if (this.serviceType == '2') {
-      this.createServiceForm.value.serviceTypeName = 'House';
-    } else if (this.serviceType == '3') {
-      this.createServiceForm.value.serviceTypeName = 'Room';
-    }
+  // getServiceTypeName() {
+  //   if (this.serviceTypeId == '1') {
+  //     this.createServiceForm.value.serviceTypeName = 'Villa';
+  //   } else if (this.serviceTypeId == '2') {
+  //     this.createServiceForm.value.serviceTypeName = 'House';
+  //   } else if (this.serviceTypeId == '3') {
+  //     this.createServiceForm.value.serviceTypeName = 'Room';
+  //   }
+  // }
+
+  //API json-server
+  createService() {
+    console.log(this.createServiceForm);
+    const service = this.createServiceForm.value;
+    console.log(service);
+
+    this.servicesService.saveServices(service).subscribe(() => {
+      alert("Create success");
+      this.router.navigate(['services/list']);
+    }, error => {
+      alert("Chicken");
+    })
+  }
+
+  getAllRentType() {
+    this.rentTypeService.getAll().subscribe(rentTypes => {
+      this.rentTypes = rentTypes;
+    })
   }
 }

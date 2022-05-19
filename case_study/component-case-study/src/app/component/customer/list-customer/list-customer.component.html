@@ -10,6 +10,8 @@
   </a>
 </h4>
 
+
+
 <table id="services">
 
   <thead>
@@ -29,7 +31,7 @@
   </tr>
   </thead>
 
-  <tbody *ngFor="let customer of customers">
+  <tbody *ngFor="let customer of customers | paginate : {itemsPerPage : 3 , currentPage : p}">
   <tr>
     <td>{{customer.customerId}}</td>
     <td>{{customer.customerCode}}</td>
@@ -54,7 +56,7 @@
     </td>
 
     <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
-           style="color: blue" (click)="getCustomerDelete(customer)">Delete</a></td>
+           style="color: blue" (click)="getCustomerDelete(customer.customerId)">Delete</a></td>
 
     <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
     <!--        </td>-->
@@ -62,6 +64,8 @@
   </tbody>
 
 </table>
+
+<pagination-controls (pageChange)="p=$event"></pagination-controls>
 
 <!--Delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

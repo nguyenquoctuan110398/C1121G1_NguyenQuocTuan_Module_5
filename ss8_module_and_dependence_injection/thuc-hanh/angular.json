@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "thuc-hanh"
+    }
+  },
+  "defaultProject": "thuc-hanh",
+  "cli": {
+    "analytics": "006432db-41b2-49aa-9a41-2edf326336d1"
+  }
 }

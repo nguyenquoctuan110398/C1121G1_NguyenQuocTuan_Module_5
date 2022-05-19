@@ -1,1 +1,176 @@
-<p>edit-service works!</p>
+<h3>Edit service</h3>
+
+<!--<p style="text-align: center;">-->
+<!--  <a href="../services/list.html" style="color: white">-->
+<!--    Back to list services-->
+<!--  </a>-->
+<!--</p>-->
+
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+
+    <form [formGroup]="editServiceForm" (ngSubmit)="updateService()" novalidate>
+
+      <div hidden>
+        <label for="serviceTypeName">Service type: </label>
+        <select id="serviceTypeName" name="serviceType" formControlName="serviceType"
+                [compareWith]="compareFnServiceType" readonly>
+          <option *ngFor="let serviceType of serviceTypes" [ngValue]="serviceType" >
+            {{serviceType.serviceTypeName}}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label for="code">Code: </label>
+        <input type="text" id="code" name="serviceCode" value="DV-0001" formControlName="serviceCode" readonly>
+      </div>
+      <div *ngIf="editServiceForm.controls.serviceCode.hasError &&
+      (editServiceForm.controls.serviceCode.touched || editServiceForm.controls.serviceCode.dirty)">
+        <div *ngIf="editServiceForm.controls.serviceCode.hasError('required')">
+          <p class="error">Code is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.serviceCode.hasError('pattern')">
+          <p class="error">Wrong format! Format should be DV-XXXX</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="serviceName" value="Villa Beach Front" formControlName="serviceName">
+      </div>
+      <div *ngIf="editServiceForm.controls.serviceName.hasError &&
+      (editServiceForm.controls.serviceName.touched || editServiceForm.controls.serviceName.dirty)">
+        <div *ngIf="editServiceForm.controls.serviceName.hasError('required')">
+          <p class="error">Name is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.serviceName.hasError('pattern')">
+          <p class="error">Wrong format!</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="area">Area: </label>
+        <input type="text" id="area" name="serviceArea" value="25000" formControlName="serviceArea">
+      </div>
+      <div *ngIf="editServiceForm.controls.serviceArea.hasError &&
+      (editServiceForm.controls.serviceArea.touched || editServiceForm.controls.serviceArea.dirty)">
+        <div *ngIf="editServiceForm.controls.serviceArea.hasError('required')">
+          <p class="error">Area is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.serviceArea.hasError('pattern')">
+          <p class="error">Area must be positive numbers!</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="cost">Cost: </label>
+        <input type="text" id="cost" name="serviceCost" value="10000000" formControlName="serviceCost">
+      </div>
+      <div *ngIf="editServiceForm.controls.serviceCost.hasError &&
+      (editServiceForm.controls.serviceCost.touched || editServiceForm.controls.serviceCost.dirty)">
+        <div *ngIf="editServiceForm.controls.serviceCost.hasError('required')">
+          <p class="error">Cost is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.serviceCost.hasError('pattern')">
+          <p class="error">Cost must be greater than 0!</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="maxPeople">Max people: </label>
+        <input type="text" id="maxPeople" name="serviceMaxPeople" value="10" formControlName="serviceMaxPeople">
+      </div>
+      <div *ngIf="editServiceForm.controls.serviceMaxPeople.hasError &&
+      (editServiceForm.controls.serviceMaxPeople.touched || editServiceForm.controls.serviceMaxPeople.dirty)">
+        <div *ngIf="editServiceForm.controls.serviceMaxPeople.hasError('required')">
+          <p class="error">Max people is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.serviceMaxPeople.hasError('pattern')">
+          <p class="error">Max people must be positive numbers!</p>
+        </div>
+      </div>
+
+      <div *ngIf="editServiceForm.value.serviceType.id == 1 || editServiceForm.value.serviceType.id == 2">
+        <label for="standardRoom">Standard room: </label>
+        <input type="text" id="standardRoom" name="standardRoom" value="vip" formControlName="standardRoom">
+      </div>
+      <div *ngIf="editServiceForm.controls.standardRoom.hasError &&
+      (editServiceForm.controls.standardRoom.touched || editServiceForm.controls.standardRoom.dirty)">
+        <div *ngIf="editServiceForm.controls.standardRoom.hasError('required')">
+          <p class="error">Standard room is not valid!</p>
+        </div>
+      </div>
+
+      <div *ngIf="(editServiceForm.value.serviceType.id == 1 || editServiceForm.value.serviceType.id == 2)">
+        <label for="descriptionOtherConvenience">Description other convenience: </label>
+        <input type="text" id="descriptionOtherConvenience" name="descriptionOtherConvenience"
+               value="Có hồ bơi" formControlName="descriptionOtherConvenience">
+      </div>
+      <div *ngIf="editServiceForm.controls.descriptionOtherConvenience.hasError &&
+      (editServiceForm.controls.descriptionOtherConvenience.touched || editServiceForm.controls.descriptionOtherConvenience.dirty)">
+        <div *ngIf="editServiceForm.controls.descriptionOtherConvenience.hasError('required')">
+          <p class="error">Description Other Convenience is not valid!</p>
+        </div>
+      </div>
+
+      <div *ngIf="editServiceForm.value.serviceType.id == 1">
+        <label for="poolArea">Pool area: </label>
+        <input type="text" id="poolArea" name="poolArea" value="500" formControlName="poolArea">
+      </div>
+      <div *ngIf="editServiceForm.controls.poolArea.hasError &&
+      (editServiceForm.controls.poolArea.touched || editServiceForm.controls.poolArea.dirty)">
+        <div *ngIf="editServiceForm.controls.poolArea.hasError('required')">
+          <p class="error">Pool area is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.poolArea.hasError('pattern')">
+          <p class="error">Pool area must be greater than 0!</p>
+        </div>
+      </div>
+
+      <div *ngIf="(editServiceForm.value.serviceType.id == 1 || editServiceForm.value.serviceType.id == 2)">
+        <label for="numberOfFloors">Number of floors: </label>
+        <input type="text" id="numberOfFloors" name="numberOfFloors" value="4" formControlName="numberOfFloors">
+      </div>
+      <div *ngIf="editServiceForm.controls.numberOfFloors.hasError &&
+      (editServiceForm.controls.numberOfFloors.touched || editServiceForm.controls.numberOfFloors.dirty)">
+        <div *ngIf="editServiceForm.controls.numberOfFloors.hasError('required')">
+          <p class="error">Number floor is not valid!</p>
+        </div>
+
+        <div *ngIf="editServiceForm.controls.numberOfFloors.hasError('pattern')">
+          <p class="error">Number floor must be positive numbers!</p>
+        </div>
+      </div>
+
+      <div>
+        <label for="rentType">Rent type: </label>
+        <select id="rentType" name="rentType" formControlName="rentType"
+                [compareWith]="compareFnRentType">
+          <option *ngFor="let rentType of rentTypes" [ngValue]="rentType">
+            {{rentType.rentTypeName}}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="editServiceForm.controls.rentType.hasError &&
+      (editServiceForm.controls.rentType.touched || editServiceForm.controls.rentType.dirty)">
+        <div *ngIf="editServiceForm.controls.rentType.hasError('required')">
+          <p class="error">Rent Type name is not valid!</p>
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <input type="submit" value="Update">
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

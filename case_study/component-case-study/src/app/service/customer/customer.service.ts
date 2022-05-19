@@ -81,16 +81,16 @@ export class CustomerService {
   //   return this.customers.find(customer => customer.customerId == id);
   // }
 
-  deleteCustomer(id: number) {
-    // this.customers = this.customers.filter(customer => {
-    //   return customer.customerId !== id;
-    // })
-    for (let i = 0; i < this.customers.length; i++){
-      if (this.customers[i].customerId == id) {
-        this.customers.splice(i,1);
-      }
-    }
-  }
+  // deleteCustomer(id: number) {
+  //   // this.customers = this.customers.filter(customer => {
+  //   //   return customer.customerId !== id;
+  //   // })
+  //   for (let i = 0; i < this.customers.length; i++){
+  //     if (this.customers[i].customerId == id) {
+  //       this.customers.splice(i,1);
+  //     }
+  //   }
+  // }
 
 
   //Api webservice
@@ -108,5 +108,9 @@ export class CustomerService {
 
   updateCustomer(customer: Customer): Observable<Customer> {
     return this.http.patch<Customer>(API_URL + '/api/customers/update', customer);
+  }
+
+  deleteCustomer(customerId: number, customer: Customer): Observable<Customer> {
+    return this.http.patch<Customer>(API_URL + '/api/customers/delete/' + customerId, customer);
   }
 }

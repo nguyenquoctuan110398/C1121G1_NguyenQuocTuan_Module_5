@@ -4,6 +4,8 @@ import {ListCustomerComponent} from "./component/customer/list-customer/list-cus
 import {ListServiceComponent} from "./component/services/list-service/list-service.component";
 import {CreateCustomerComponent} from "./component/customer/create-customer/create-customer.component";
 import {EditCustomerComponent} from "./component/customer/edit-customer/edit-customer.component";
+import {CreateServiceComponent} from "./component/services/create-service/create-service.component";
+import {EditServiceComponent} from "./component/services/edit-service/edit-service.component";
 
 const routes: Routes = [
   {
@@ -20,9 +22,21 @@ const routes: Routes = [
   },
 
   {
-    path: 'service/list',
+    path: 'services/list',
     component: ListServiceComponent
   },
+  {
+    path: 'services/create',
+    component: CreateServiceComponent
+  },
+  {
+    path: 'services/edit/:id',
+    component: EditServiceComponent
+  }
+  // {
+  //   path: 'services/edit/:serviceId',
+  //
+  // }
 ]
 
 @NgModule({

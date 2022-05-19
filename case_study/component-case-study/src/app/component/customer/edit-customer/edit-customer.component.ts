@@ -42,7 +42,8 @@ export class EditCustomerComponent implements OnInit {
         Validators.email]),
       customerAddress: new FormControl('', [Validators.required]),
       deleteFlag: new FormControl(''),
-      customerType: new FormControl('', [Validators.required])
+      customerType: new FormControl( [Validators.required])
+      // customerType: new FormControl([Validators.required])
     })
   }
 
