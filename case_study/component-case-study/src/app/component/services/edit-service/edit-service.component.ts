@@ -7,6 +7,7 @@ import {ServicesService} from "../../../service/services/services.service";
 import {ServiceTypeService} from "../../../service/services/service-type.service";
 import {RentTypeService} from "../../../service/services/rent-type.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {log} from "util";
 
 @Component({
   selector: 'app-edit-service',
@@ -131,14 +132,15 @@ export class EditServiceComponent implements OnInit {
     })
   }
 
-  updateService() {
+  updateService(successBtn: HTMLButtonElement) {
     console.log(this.editServiceForm);
     const service = this.editServiceForm.value;
     console.log('id: ' + this.id);
 
     this.servicesService.updateServices(this.id, service).subscribe(() => {
-      alert("edit success");
-      this.router.navigate(['/services/list'])
+      console.log("edit success");
+      successBtn.click();
+      // this.router.navigate(['/services/list'])
 
     }, error => {
       console.log(error);

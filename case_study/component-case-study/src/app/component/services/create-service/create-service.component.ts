@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {ServiceType} from "../../../model/services/service-type";
 import {ServiceTypeService} from "../../../service/services/service-type.service";
 import {CustomerType} from "../../../model/customer/customer-type";
+import {log} from "util";
 
 @Component({
   selector: 'app-create-service',
@@ -19,6 +20,7 @@ export class CreateServiceComponent implements OnInit {
   createServiceForm: FormGroup
 
   rentTypes: RentType[] = [];
+  serviceTypes: ServiceType[] = [];
   serviceType: ServiceType = new ServiceType();
 
   constructor(private servicesService: ServicesService,
@@ -54,6 +56,7 @@ export class CreateServiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllRentType();
+    this.getAllServiceType();
   }
 
   chooseServiceType(target: any) {
@@ -61,6 +64,9 @@ export class CreateServiceComponent implements OnInit {
     this.serviceTypeService.findById(target.value).subscribe(serviceType => {
       this.serviceType = serviceType;
       console.log(serviceType);
+
+      this.createServiceForm.controls.serviceType.setValue(serviceType);
+
       if (this.serviceType.id != 1) {
         if (this.serviceType.id != 2) {
 
@@ -143,14 +149,15 @@ export class CreateServiceComponent implements OnInit {
   // }
 
   //API json-server
-  createService() {
+  createService(successBtn: HTMLButtonElement) {
     console.log(this.createServiceForm);
     const service = this.createServiceForm.value;
     console.log(service);
 
     this.servicesService.saveServices(service).subscribe(() => {
-      alert("Create success");
-      this.router.navigate(['services/list']);
+      console.log("Create success");
+      // this.router.navigate(['services/list']);
+      successBtn.click();
     }, error => {
       alert("Chicken");
     })
@@ -159,6 +166,12 @@ export class CreateServiceComponent implements OnInit {
   getAllRentType() {
     this.rentTypeService.getAll().subscribe(rentTypes => {
       this.rentTypes = rentTypes;
+    })
+  }
+
+  getAllServiceType() {
+    this.serviceTypeService.getAll().subscribe(serviceTypes => {
+      this.serviceTypes = serviceTypes;
     })
   }
 }

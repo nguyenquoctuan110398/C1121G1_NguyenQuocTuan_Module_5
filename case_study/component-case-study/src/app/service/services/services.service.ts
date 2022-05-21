@@ -17,6 +17,12 @@ export class ServicesService {
     return this.httpClient.get<Services[]>(JSON_SERVER_API_URL + '/services');
   }
 
+  getAllSearch(serviceNameSearchValue, descriptionOtherConvenienceSearchValue): Observable<Services[]> {
+    return this.httpClient.get<Services[]>(JSON_SERVER_API_URL +
+      '/services?serviceName_like=' + serviceNameSearchValue +
+      '&descriptionOtherConvenience_like=' + descriptionOtherConvenienceSearchValue);
+  }
+
   saveServices(service): Observable<Services> {
     return this.httpClient.post<Services>(JSON_SERVER_API_URL + '/services', service);
   }

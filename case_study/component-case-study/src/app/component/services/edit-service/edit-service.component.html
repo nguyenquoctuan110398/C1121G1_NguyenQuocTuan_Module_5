@@ -9,7 +9,7 @@
 <div class="container" style="text-align: center">
   <div id="form" style="display: inline-block; text-align: left">
 
-    <form [formGroup]="editServiceForm" (ngSubmit)="updateService()" novalidate>
+    <form [formGroup]="editServiceForm" (ngSubmit)="updateService(successBtn)" novalidate>
 
       <div hidden>
         <label for="serviceTypeName">Service type: </label>
@@ -173,4 +173,24 @@
   </div>
 </div>
 
-<app-footer></app-footer>
+<button [hidden]="true" #successBtn data-mdb-toggle="modal" data-mdb-target="#successModal"></button>
+<!--success modal-->
+<div id="successModal" class="modal fade">
+  <div class="modal-dialog modal-confirm modal-confirm-success">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success justify-content-center">
+        <div class="icon-box">
+          <i class="material-icons">&#xE876;</i>
+        </div>
+        <button type="button" class="close"
+                data-mdb-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Great!</h4>
+        <p>Edit service success.</p>
+        <button type="button" class="btn btn-danger" id="delete_btn" data-mdb-dismiss="modal"
+                [routerLink]="['/services/list']">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,188 @@
+<h3>Nội dung tin</h3>
+
+<!--<p style="text-align: center;">-->
+<!--  <a routerLink="/service/list" style="color: black">-->
+<!--    Back to list services-->
+<!--  </a>-->
+<!--</p>-->
+
+<div class="container" style="text-align: center">
+  <div id="form" style="display: inline-block; text-align: left">
+
+    <form [formGroup]="themBaiDang" (ngSubmit)="themMoi(successBtn)" novalidate>
+
+      <label for="danhMuc">Danh mục: </label>
+      <select id="danhMuc" formControlName="danhMuc">
+        <option value="Nhà đất">Nhà đất</option>
+        <option value="Biệt thự">Biệt thự</option>
+      </select>
+
+      <label for="vungMien">Vùng miền: </label>
+      <select id="vungMien" formControlName="vungMien">
+        <option value="Hà Nội">Hà Nội</option>
+        <option value="Đà Nẵng">Đà Nẵng</option>
+        <option value="Đà Nẵng">Hồ Chì Minh</option>
+      </select>
+
+      <label for="daiDien">Bạn là: </label>
+      <br>
+      <input type="radio" id="daiDien" formControlName="daiDien" value="Cá nhân"/>Cá nhân
+      <input type="radio" id="daiDien" formControlName="daiDien" value="Công ty"/>Công ty
+      <br>
+
+      <label for="loaiBaiViet">Loại bài viết: </label>
+      <br>
+      <div *ngFor="let loaiBaiViet of loaiBaiViets" id="loaiBaiViet">
+        <input type="radio" formControlName="loaiBaiViet"
+               value="{{loaiBaiViet.tenLoaiBaiViet}}">{{loaiBaiViet.tenLoaiBaiViet}}
+      </div>
+
+
+      <label for="tinhTrang">Tình trạng: </label>
+      <br>
+      <input type="radio" id="tinhTrang" formControlName="tinhTrang" value="Mới">Mới
+      <input type="radio" id="tinhTrang" formControlName="tinhTrang" value="Đã sử dụng">Đã sử dụng
+      <br>
+
+      <label for="diaChi">Địa chỉ: <span style="color: red">(*)</span></label>
+      <input type="text" id="diaChi" formControlName="diaChi">
+      <div *ngIf="themBaiDang.controls.diaChi.hasError &&
+      (themBaiDang.controls.diaChi.touched || themBaiDang.controls.diaChi.dirty)">
+        <div *ngIf="themBaiDang.controls.diaChi.hasError('required')">
+          <p class="error">Địa chỉ không được để trống.</p>
+        </div>
+
+        <!--        <div *ngIf="themBaiDang.controls.diaChi.hasError('pattern')">-->
+        <!--          <p class="error">Wrong format! Format should be KH-XXXX</p>-->
+        <!--        </div>-->
+      </div>
+
+
+      <label for="dienTich">Diện tích: </label> <span style="color: red">(*)</span>
+      <input type="text" id="dienTich" formControlName="dienTich">
+      <div *ngIf="themBaiDang.controls.dienTich.hasError &&
+      (themBaiDang.controls.dienTich.touched || themBaiDang.controls.dienTich.dirty)">
+        <div *ngIf="themBaiDang.controls.dienTich.hasError('required')">
+          <p class="error">Diện tích không được để trống.</p>
+        </div>
+
+        <div *ngIf="themBaiDang.controls.dienTich.hasError('pattern')">
+          <p class="error">Diện tích phải là số và lớn hơn 20.</p>
+        </div>
+      </div>
+
+
+      <label for="huong">Hướng: </label>
+      <select id="huong" formControlName="huong">
+        <option value="Đông">Đông</option>
+        <option value="Tây">Tây</option>
+        <option value="Nam">Nam</option>
+        <option value="Bắc">Bắc</option>
+      </select>
+
+      <label for="tuaDe">Tựa đề: <span style="color: red">(*)</span></label>
+      <input type="text" id="tuaDe" formControlName="tuaDe">
+      <div *ngIf="themBaiDang.controls.tuaDe.hasError &&
+      (themBaiDang.controls.tuaDe.touched || themBaiDang.controls.tuaDe.dirty)">
+        <div *ngIf="themBaiDang.controls.tuaDe.hasError('required')">
+          <p class="error">Tựa đề không được để trống.</p>
+        </div>
+
+<!--        <div *ngIf="themBaiDang.controls.dienTich.hasError('pattern')">-->
+<!--          <p class="error">Diện tích phải là số và lớn hơn 20.</p>-->
+<!--        </div>-->
+      </div>
+
+
+      <label for="noiDung">Nội dung: <span style="color: red">(*)</span></label>
+      <textarea id="noiDung" formControlName="noiDung"></textarea>
+      <div *ngIf="themBaiDang.controls.noiDung.hasError &&
+      (themBaiDang.controls.noiDung.touched || themBaiDang.controls.noiDung.dirty)">
+        <div *ngIf="themBaiDang.controls.noiDung.hasError('required')">
+          <p class="error">Nội dung không được để trống.</p>
+        </div>
+
+        <!--        <div *ngIf="themBaiDang.controls.dienTich.hasError('pattern')">-->
+        <!--          <p class="error">Diện tích phải là số và lớn hơn 20.</p>-->
+        <!--        </div>-->
+      </div>
+
+
+      <label for="gia">Giá: <span style="color: red">(*)</span></label>
+      <input type="text" id="gia" formControlName="gia">
+      <div *ngIf="themBaiDang.controls.gia.hasError &&
+      (themBaiDang.controls.gia.touched || themBaiDang.controls.gia.dirty)">
+        <div *ngIf="themBaiDang.controls.gia.hasError('required')">
+          <p class="error">Giá không được để trống.</p>
+        </div>
+
+        <div *ngIf="themBaiDang.controls.gia.hasError('pattern')">
+          <p class="error">Giá phải là số và lớn hơn 100000000.</p>
+        </div>
+      </div>
+
+
+      <label for="ngayDang">Ngày đăng: </label>
+      <input type="date" id="ngayDang" formControlName="ngayDang">
+
+      <label for="trangThai">Trạng thái: </label>
+      <input type="text" id="trangThai" formControlName="trangThai">
+
+      <!--      <label for="customerCode">Code: </label>-->
+      <!--      <input type="text" id="customerCode" name="customerCode" formControlName="customerCode">-->
+      <!--      <div *ngIf="createCustomerForm.controls.customerCode.hasError &&-->
+      <!--      (createCustomerForm.controls.customerCode.touched || createCustomerForm.controls.customerCode.dirty)">-->
+      <!--        <div *ngIf="createCustomerForm.controls.customerCode.hasError('required')">-->
+      <!--          <p class="error">Code is not valid!</p>-->
+      <!--        </div>-->
+
+      <!--        <div *ngIf="createCustomerForm.controls.customerCode.hasError('pattern')">-->
+      <!--          <p class="error">Wrong format! Format should be KH-XXXX</p>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+
+      <!--      <label for="customerType">Customer type: </label>-->
+      <!--      <select id="customerType" name="customerType" formControlName="customerType">-->
+      <!--        <option *ngFor="let customerType of customerTypes" [ngValue]="customerType">-->
+      <!--          {{customerType.customerTypeName}}-->
+      <!--        </option>-->
+      <!--      </select>-->
+      <!--      <div *ngIf="createCustomerForm.controls.customerType.hasError &&-->
+      <!--      (createCustomerForm.controls.customerType.touched || createCustomerForm.controls.customerType.dirty)">-->
+      <!--        <div *ngIf="createCustomerForm.controls.customerType.hasError('required')">-->
+      <!--          <p class="error">Type name is not valid!</p>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <div style="text-align: center">
+        <!--        <button value="Create" [disabled]="!themBaiDang.valid" value="submit">Create</button>-->
+        <button value="Create" value="submit" [disabled]="!themBaiDang.valid">Thêm mới</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+<button [hidden]="true" #successBtn data-mdb-toggle="modal" data-mdb-target="#successModal"></button>
+<!--success modal-->
+<div id="successModal" class="modal fade">
+  <div class="modal-dialog modal-confirm modal-confirm-success">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success justify-content-center">
+        <div class="icon-box">
+          <i class="material-icons">&#xE876;</i>
+        </div>
+        <button type="button" class="close" data-mdb-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Great!</h4>
+        <p>Create service success.</p>
+        <button type="button" class="btn btn-danger" id="delete_btn" data-mdb-dismiss="modal"
+                [routerLink]="['']">OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

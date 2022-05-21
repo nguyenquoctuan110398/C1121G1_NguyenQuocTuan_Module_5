@@ -1,0 +1,140 @@
+<h3>Danh sách các bài viết đã đăng</h3>
+<!--<h4>-->
+<!--    <a routerLink="@{/customers/create}">-->
+<!--        Add new customer-->
+<!--    </a>-->
+<!--</h4>-->
+
+<!--<button class="btn btn-primary" type="button">-->
+<!--  <a style="color: black" class="delete_btn"-->
+<!--     data-mdb-toggle="modal" data-mdb-target="#addService">FACILITY</a>-->
+<!--</button>-->
+<!--<div>-->
+  <button class="btn btn-primary" type="button">
+    <a style="color: black" class="delete_btn" routerLink="/them-moi"
+       data-mdb-target="#addService">Thêm mới bài đăng</a>
+  </button>
+
+<!--  <button type="button" class="btn btn-danger me-3"-->
+<!--          data-mdb-toggle="modal"-->
+<!--          data-mdb-target="#modalDeleteMultiple">-->
+<!--    Delete Multiple-->
+<!--  </button>-->
+<!--</div>-->
+<br>
+
+<!--<input type="text" class="form-control" name="name" [(ngModel)]="dienTich" (ngModelChange)="search()"-->
+<!--       placeholder="Enter name to search">-->
+
+
+<!-- Search form -->
+<div class="navbar-nav ms-auto d-flex flex-row">
+<!--  <input type="text" name="searchValue" placeholder="Service name search" [(ngModel)]="serviceNameSearchValue">-->
+  <!--  <select name="searchSelect" class="form-select" aria-label="Default select example" [(ngModel)]="searchSelect" >-->
+  <!--    <option selected value="1">Mã bệnh án</option>-->
+  <!--    <option value="2">Mã bệnh nhân</option>-->
+  <!--    <option value="3">Tên bệnh nhân</option>-->
+  <!--  </select>-->
+
+    <input type="text" placeholder="Diện Tích"
+            [(ngModel)]="dienTichSearchValue">
+
+    <input type="text" placeholder="Giá" [(ngModel)]="giaSearchValue">
+
+
+<!--  <input type="text" name="searchValue" placeholder="Description Other Convenience"-->
+<!--         [(ngModel)]="descriptionOtherConvenienceSearchValue">-->
+
+  <!--  <div class="navbar-nav ms-auto d-flex flex-row">-->
+  <!--    <input type="date" name="searchStartDateValue" placeholder="Start Date">-->
+  <!--    <input type="date" name="searchEndDateValue" placeholder="End Date">-->
+  <!--    <select name="searchDateSelect" class="form-select" aria-label="Default select example">-->
+  <!--      <option selected value="1">Ngày nhập viện</option>-->
+  <!--      <option value="2">Ngày xuất viện</option>-->
+  <!--    </select>-->
+  <!--  </div>-->
+
+  <button class="border-0" id="search-addon" (click)="searchJson()">Search</button>
+</div>
+
+
+<div class="notify">
+
+</div>
+
+
+<!--<div *ngIf="checkSearch == false">-->
+<!--  <h3>Không tìm thấy!</h3>-->
+<!--</div>-->
+
+<!--<div [hidden]="checkSearch != true">-->
+  <table id="services">
+
+    <thead>
+    <tr>
+      <th>Tiêu đề</th>
+      <th>Loại bài viết</th>
+      <th>Danh mục</th>
+      <th>Ngày đăng</th>
+      <th>Trạng thái</th>
+<!--      <th>Edit</th>-->
+<!--      <th>Delete</th>-->
+    </tr>
+    </thead>
+
+    <tbody *ngFor="let baiDang of baiDangs, index as i">
+    <tr>
+<!--      <td>-->
+<!--        <input type="checkbox" (click)="addIdServiceToDeleteList(service.id)">-->
+<!--      </td>-->
+      <td>{{baiDang.tuaDe}}</td>
+      <td>{{baiDang.loaiBaiViet}}</td>
+      <td>{{baiDang.danhMuc}}</td>
+      <td>{{baiDang.ngayDang}}</td>
+      <td>{{baiDang.trangThai}}</td>
+
+<!--      <td><a [routerLink]="['/services/edit', service.id]">Edit</a>-->
+<!--      </td>-->
+
+<!--      <td><a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"-->
+<!--             data-mdb-target="#deleteModal"-->
+<!--             (click)="getServiceDelete(service.id)">Delete</a></td>-->
+
+<!--      &lt;!&ndash;        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>&ndash;&gt;-->
+<!--      &lt;!&ndash;        </td>&ndash;&gt;-->
+<!--    </tr>-->
+    </tbody>
+  </table>
+
+
+
+
+<!--Delete Modal -->
+<!--<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <form action="/customers/delete" method="post">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>-->
+<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <input type="text" id="deleteByCustomerId" name="deleteByCustomerId">-->
+<!--        <div class="modal-body">-->
+<!--          <p id="deleteInfor"></p>-->
+<!--          <p id="deleteInforNameCustomer"></p>-->
+<!--          <p>Do you want delete-->
+<!--            <span style="color: red" id="customerNameDelete">{{serviceDelete.serviceName}}</span>?</p>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal"-->
+<!--                  id="cancelDeleteModalBtn">No-->
+<!--          </button>-->
+<!--          <button type="submit" class="btn btn-primary" id="deleteModalBtn"-->
+<!--                  (click)="delete(closeModal)">Yes-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+

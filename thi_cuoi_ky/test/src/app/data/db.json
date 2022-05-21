@@ -1,0 +1,134 @@
+{
+  "bai-viet": [
+    {
+      "id": 1,
+      "danhMuc": "Nhà đất",
+      "vungMien": "Đà Nẵng",
+      "daiDien": "Cá nhân",
+      "loaiBaiViet": "Cần bán",
+      "tinhTrang": "Mới",
+      "diaChi": "32 Hùng Vương",
+      "dienTich": "200",
+      "huong": "Đông",
+      "tuaDe": "Nhà bán",
+      "noiDung": "laksjdkljklas",
+      "gia": "1000000000",
+      "ngayDang": "2022-15-05",
+      "trangThai": "Đang rao"
+    },
+    {
+      "danhMuc": "Nhà đất",
+      "vungMien": "Đà Nẵng",
+      "daiDien": "Cá nhân",
+      "loaiBaiViet": "Cần mua",
+      "tinhTrang": "Đã sử dụng",
+      "diaChi": "Hàm Nghi",
+      "dienTich": "100",
+      "huong": "Nam",
+      "tuaDe": "Hihihaha",
+      "noiDung": "aaaaaaaaaaaaaa",
+      "gia": "2000000000",
+      "ngayDang": "2022-05-20",
+      "trangThai": "Rao",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "danhMuc": "Nhà đất",
+      "vungMien": "Đà Nẵng",
+      "daiDien": "Cá nhân",
+      "loaiBaiViet": "Cần bán",
+      "tinhTrang": "Mới",
+      "diaChi": "32 Hùng Vương",
+      "dienTich": "200",
+      "huong": "Đông",
+      "tuaDe": "Nhà bán",
+      "noiDung": "laksjdkljklas",
+      "gia": "1000000000",
+      "ngayDang": "2022-15-05",
+      "trangThai": "Đang rao"
+    },
+    {
+      "danhMuc": "Biệt thự",
+      "vungMien": "Đà Nẵng",
+      "daiDien": "Công ty",
+      "loaiBaiViet": "Cho thuê",
+      "tinhTrang": "Đã sử dụng",
+      "diaChi": "Quảng nam, Hội An",
+      "dienTich": "240",
+      "huong": "Đông",
+      "tuaDe": "Tuấn bán nhà",
+      "noiDung": "Tuấn cần bán nhà",
+      "gia": "999999999",
+      "ngayDang": "2022-05-20",
+      "trangThai": "Dsad",
+      "id": 4
+    }
+  ],
+  "loaiBaiViet": [
+    {
+      "id": 1,
+      "tenLoaiBaiViet": "Cần bán"
+    },
+    {
+      "id": 2,
+      "tenLoaiBaiViet": "Cần mua"
+    },
+    {
+      "id": 3,
+      "tenLoaiBaiViet": "Cho thuê"
+    },
+    {
+      "id": 4,
+      "tenLoaiBaiViet": "Cần thuê"
+    }
+  ],
+  "danh-muc": [
+    {
+      "id": 1,
+      "ten": "Nhà Đất"
+    },
+    {
+      "id": 2,
+      "ten": "Biệt thự"
+    }
+  ],
+  "vung-mien": [
+    {
+      "id": 1,
+      "tenVungMien": "Hà Nội"
+    },
+    {
+      "id": 2,
+      "tenVungMien": "Đà Nẵng"
+    },
+    {
+      "id": 3,
+      "tenVungMien": "Hồ Chí Minh"
+    }
+  ],
+  "huong": [
+    {
+      "id": 1,
+      "tenHuong": "Đông"
+    },
+    {
+      "id": 2,
+      "tenHuong": "Tây"
+    },
+    {
+      "id": 3,
+      "tenHuong": "Nam"
+    },
+    {
+      "id": 4,
+      "tenHuong": "Bắc"
+    }
+  ],
+  "mun-dich": [
+    {
+      "id": 1,
+      "mucDich": "Cần bán"
+    }
+  ]
+}

@@ -4,13 +4,13 @@
       "id": 1,
       "serviceCode": "DV-0001",
       "serviceName": "Villa Beach Front",
-      "serviceArea": "25000",
-      "serviceCost": "10000000",
-      "serviceMaxPeople": "10",
+      "serviceArea": 25000,
+      "serviceCost": 10000000,
+      "serviceMaxPeople": 10,
       "standardRoom": "vip",
-      "descriptionOtherConvenience": "Ăn sáng",
-      "poolArea": "500",
-      "numberOfFloors": "4",
+      "descriptionOtherConvenience": "Có hồ bơi",
+      "poolArea": 500,
+      "numberOfFloors": 4,
       "serviceType": {
         "id": 1,
         "serviceTypeName": "Villa"
@@ -25,12 +25,12 @@
       "id": 2,
       "serviceCode": "DV-0002",
       "serviceName": "House Princess 01",
-      "serviceArea": "14000",
-      "serviceCost": "5000000",
-      "serviceMaxPeople": "7",
+      "serviceArea": 14000,
+      "serviceCost": 5000000,
+      "serviceMaxPeople": 7,
       "standardRoom": "vip",
       "descriptionOtherConvenience": "Có thêm Bếp Nướng",
-      "numberOfFloors": "4",
+      "numberOfFloors": 3,
       "serviceType": {
         "id": 2,
         "serviceTypeName": "House"
@@ -39,16 +39,15 @@
         "id": 2,
         "rentTypeCost": 2000000,
         "rentTypeName": "month"
-      },
-      "poolArea": "500"
+      }
     },
     {
       "id": 3,
       "serviceCode": "DV-0003",
-      "serviceName": "Room Twin",
-      "serviceArea": "5000",
-      "serviceCost": "2200000",
-      "serviceMaxPeople": "2",
+      "serviceName": "Room Twin 01",
+      "serviceArea": 5000,
+      "serviceCost": 1000000,
+      "serviceMaxPeople": 2,
       "standardRoom": "normal",
       "descriptionOtherConvenience": "Có TV",
       "serviceType": {
@@ -59,12 +58,9 @@
         "id": 4,
         "rentTypeCost": 100000,
         "rentTypeName": "hour"
-      },
-      "poolArea": "500",
-      "numberOfFloors": "4"
+      }
     }
   ],
-
   "serviceType": [
     {
       "id": 1,

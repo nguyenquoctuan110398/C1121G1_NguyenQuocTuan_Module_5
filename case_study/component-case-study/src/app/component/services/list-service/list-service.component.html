@@ -9,29 +9,65 @@
 <!--  <a style="color: black" class="delete_btn"-->
 <!--     data-mdb-toggle="modal" data-mdb-target="#addService">FACILITY</a>-->
 <!--</button>-->
+<div>
+  <button class="btn btn-primary" type="button">
+    <a style="color: black" class="delete_btn" routerLink="/services/create"
+       data-mdb-target="#addService">Create facility</a>
+  </button>
 
-<button class="btn btn-primary" type="button">
-  <a style="color: black" class="delete_btn" routerLink="/services/create"
-     data-mdb-target="#addService">Create facility</a>
-</button>
-
+  <button type="button" class="btn btn-danger me-3"
+          data-mdb-toggle="modal"
+          data-mdb-target="#modalDeleteMultiple">
+    Delete Multiple
+  </button>
+</div>
 <input type="text" class="form-control" name="name" [(ngModel)]="name" (ngModelChange)="search()"
        placeholder="Enter name to search">
+
+
+<!-- Search form -->
+<div class="navbar-nav ms-auto d-flex flex-row">
+  <input type="text" name="searchValue" placeholder="Service name search" [(ngModel)]="serviceNameSearchValue">
+  <!--  <select name="searchSelect" class="form-select" aria-label="Default select example" [(ngModel)]="searchSelect" >-->
+  <!--    <option selected value="1">Mã bệnh án</option>-->
+  <!--    <option value="2">Mã bệnh nhân</option>-->
+  <!--    <option value="3">Tên bệnh nhân</option>-->
+  <!--  </select>-->
+
+<!--  <input type="text" name="searchServiceArea" placeholder="Service area"-->
+<!--          [(ngModel)]="serviceAreaSearchValue">-->
+
+  <input type="text" name="searchValue" placeholder="Description Other Convenience"
+         [(ngModel)]="descriptionOtherConvenienceSearchValue">
+
+  <!--  <div class="navbar-nav ms-auto d-flex flex-row">-->
+  <!--    <input type="date" name="searchStartDateValue" placeholder="Start Date">-->
+  <!--    <input type="date" name="searchEndDateValue" placeholder="End Date">-->
+  <!--    <select name="searchDateSelect" class="form-select" aria-label="Default select example">-->
+  <!--      <option selected value="1">Ngày nhập viện</option>-->
+  <!--      <option value="2">Ngày xuất viện</option>-->
+  <!--    </select>-->
+  <!--  </div>-->
+
+  <button class="border-0" id="search-addon" (click)="searchJson()">Search</button>
+</div>
 
 
 <div class="notify">
 
 </div>
 
-<div *ngIf="check == false">
+
+<div *ngIf="checkSearch == false">
   <h3>Không tìm thấy!</h3>
 </div>
 
-<div *ngIf="check == true">
+<div [hidden]="checkSearch != true">
   <table id="services">
 
     <thead>
     <tr>
+      <th></th>
       <th>Service id</th>
       <th>Service code</th>
       <th>Service name</th>
@@ -49,10 +85,13 @@
     </tr>
     </thead>
 
-    <tbody *ngFor="let service of serviceList">
+    <tbody *ngFor="let service of serviceList | paginate : {itemsPerPage : 2 , currentPage : p}, index as i">
     <tr>
+      <td>
+        <input type="checkbox" (click)="addIdServiceToDeleteList(service.id)">
+      </td>
       <td>{{service.id}}</td>
-      <td>{{service.serviceCost}}</td>
+      <td>{{service.serviceCode}}</td>
       <td>{{service.serviceName}}</td>
       <td>{{service.serviceArea}}</td>
       <td>{{service.serviceCost}}</td>
@@ -67,42 +106,109 @@
       <td><a [routerLink]="['/services/edit', service.id]">Edit</a>
       </td>
 
-      <td><a data-bs-toggle="modal" data-bs-target="#deleteModal"
-             (click)="getServiceDelete(service.id)"
-             style="color: blue">Delete</a></td>
+      <td><a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"
+             data-mdb-target="#deleteModal"
+             (click)="getServiceDelete(service.id)">Delete</a></td>
 
       <!--        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>-->
       <!--        </td>-->
     </tr>
     </tbody>
   </table>
+
+  <pagination-controls (pageChange)="p=$event"></pagination-controls>
 </div>
 
+
 <!--Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<!--<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--    <form action="/customers/delete" method="post">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>-->
+<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <input type="text" id="deleteByCustomerId" name="deleteByCustomerId">-->
+<!--        <div class="modal-body">-->
+<!--          <p id="deleteInfor"></p>-->
+<!--          <p id="deleteInforNameCustomer"></p>-->
+<!--          <p>Do you want delete-->
+<!--            <span style="color: red" id="customerNameDelete">{{serviceDelete.serviceName}}</span>?</p>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal"-->
+<!--                  id="cancelDeleteModalBtn">No-->
+<!--          </button>-->
+<!--          <button type="submit" class="btn btn-primary" id="deleteModalBtn"-->
+<!--                  (click)="delete(closeModal)">Yes-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
   <div class="modal-dialog">
-    <form action="/customers/delete" method="post">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <input type="text" id="deleteByCustomerId" name="deleteByCustomerId">
-        <div class="modal-body">
-          <p id="deleteInfor"></p>
-          <p id="deleteInforNameCustomer"></p>
-          <p>Do you want delete
-            <span style="color: red" id="customerNameDelete">{{serviceDelete.serviceName}}</span>?</p>
-        </div>
-        <div class="modal-footer">
-          <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                  id="cancelDeleteModalBtn">No
-          </button>
-          <button type="submit" class="btn btn-primary" id="deleteModalBtn"
-                  (click)="delete(closeModal)">Yes
-          </button>
-        </div>
+    <div class="modal-content">
+      <input type="hidden" name="idDelete" id="idDelete">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete service</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
-    </form>
+      <div class="modal-body">
+        <p>Do you want delete
+          <span style="color: red" id="customerNameDelete">{{serviceDelete.serviceName}}</span>?</p>
+        <p class="text-warning">*Thao tác này sẽ không thể hoàn tác*</p>
+      </div>
+      <div class="modal-footer">
+        <button #closeModal type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="delete_btn" (click)="delete(closeModal, successBtn)">Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button [hidden]="true" #successBtn data-mdb-toggle="modal" data-mdb-target="#successModal"></button>
+<!--success modal-->
+<div id="successModal" class="modal fade">
+  <div class="modal-dialog modal-confirm modal-confirm-success">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success justify-content-center">
+        <div class="icon-box">
+          <i class="material-icons">&#xE876;</i>
+        </div>
+        <button type="button" class="close" data-mdb-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Great!</h4>
+        <p>Delete service success!</p>
+        <button type="button" class="btn btn-danger" id="delete_btnn" data-mdb-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Xóa nhiều trường -->
+<div class="modal fade" tabindex="-1" id="modalDeleteMultiple">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn muốn xóa các bản ghi đã chọn?.</p>
+      </div>
+      <div class="modal-footer">
+        <button #closeMulDelModal type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="deleteMul(closeMulDelModal, successBtn)">OK</button>
+      </div>
+    </div>
   </div>
 </div>
