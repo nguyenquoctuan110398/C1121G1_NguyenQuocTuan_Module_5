@@ -4,7 +4,7 @@ import {CustomerService} from "../../../service/customer/customer.service";
 import {CustomerTypeService} from "../../../service/customer/customer-type.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {Customer} from "../../../model/customer/customer";
-import {CustomerType} from "../../../model/customer/customer-type";
+import {CustomerType} from "../customer-model/customer-type";
 
 @Component({
   selector: 'app-edit-customer',

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Services} from "../../../model/services/services";
-import {ServiceType} from "../../../model/services/service-type";
-import {RentType} from "../../../model/services/rent-type";
+
 import {ServicesService} from "../../../service/services/services.service";
 import {ServiceTypeService} from "../../../service/services/service-type.service";
 import {RentTypeService} from "../../../service/services/rent-type.service";
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {log} from "util";
+import {ServiceType} from "../services-model/service-type";
+import {RentType} from "../services-model/rent-type";
 
 @Component({
   selector: 'app-edit-service',

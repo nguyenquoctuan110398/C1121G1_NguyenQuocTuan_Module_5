@@ -5,7 +5,8 @@ import {ListCustomerComponent} from "./list-customer/list-customer.component";
 import {CreateCustomerComponent} from "./create-customer/create-customer.component";
 import {EditCustomerComponent} from "./edit-customer/edit-customer.component";
 import {NgxPaginationModule} from "ngx-pagination";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -19,7 +20,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     CustomerRoutingModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class CustomerModule { }

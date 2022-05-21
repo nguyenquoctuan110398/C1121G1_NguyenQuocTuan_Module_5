@@ -1,16 +1,36 @@
 {
   "services": [
     {
-      "id": 1,
-      "serviceCode": "DV-0001",
-      "serviceName": "Villa Beach Front",
-      "serviceArea": 25000,
-      "serviceCost": 10000000,
-      "serviceMaxPeople": 10,
-      "standardRoom": "vip",
-      "descriptionOtherConvenience": "Có hồ bơi",
-      "poolArea": 500,
-      "numberOfFloors": 4,
+      "serviceCode": "DV-4444",
+      "serviceName": "Houseeee",
+      "serviceArea": "2000",
+      "serviceCost": "1000000",
+      "serviceMaxPeople": "5",
+      "standardRoom": "",
+      "descriptionOtherConvenience": "",
+      "poolArea": "",
+      "numberOfFloors": "",
+      "serviceType": {
+        "id": 3,
+        "serviceTypeName": "Room"
+      },
+      "rentType": {
+        "id": 2,
+        "rentTypeCost": 2000000,
+        "rentTypeName": "month"
+      },
+      "id": 4
+    },
+    {
+      "serviceCode": "DV-1212",
+      "serviceName": "Villa Meow",
+      "serviceArea": "8000",
+      "serviceCost": "20000000",
+      "serviceMaxPeople": "10",
+      "standardRoom": "Custom",
+      "descriptionOtherConvenience": "Buffet sáng, tối",
+      "poolArea": "500",
+      "numberOfFloors": "5",
       "serviceType": {
         "id": 1,
         "serviceTypeName": "Villa"
@@ -19,46 +39,8 @@
         "id": 3,
         "rentTypeCost": 400000,
         "rentTypeName": "day"
-      }
-    },
-    {
-      "id": 2,
-      "serviceCode": "DV-0002",
-      "serviceName": "House Princess 01",
-      "serviceArea": 14000,
-      "serviceCost": 5000000,
-      "serviceMaxPeople": 7,
-      "standardRoom": "vip",
-      "descriptionOtherConvenience": "Có thêm Bếp Nướng",
-      "numberOfFloors": 3,
-      "serviceType": {
-        "id": 2,
-        "serviceTypeName": "House"
       },
-      "rentType": {
-        "id": 2,
-        "rentTypeCost": 2000000,
-        "rentTypeName": "month"
-      }
-    },
-    {
-      "id": 3,
-      "serviceCode": "DV-0003",
-      "serviceName": "Room Twin 01",
-      "serviceArea": 5000,
-      "serviceCost": 1000000,
-      "serviceMaxPeople": 2,
-      "standardRoom": "normal",
-      "descriptionOtherConvenience": "Có TV",
-      "serviceType": {
-        "id": 3,
-        "serviceTypeName": "Room"
-      },
-      "rentType": {
-        "id": 4,
-        "rentTypeCost": 100000,
-        "rentTypeName": "hour"
-      }
+      "id": 5
     }
   ],
   "serviceType": [

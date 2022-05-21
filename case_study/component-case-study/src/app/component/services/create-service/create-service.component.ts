@@ -1,14 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {RentType} from "../../../model/services/rent-type";
 import {ServicesService} from "../../../service/services/services.service";
 import {RentTypeService} from "../../../service/services/rent-type.service";
 import {Router} from "@angular/router";
-import {ServiceType} from "../../../model/services/service-type";
 import {ServiceTypeService} from "../../../service/services/service-type.service";
-import {CustomerType} from "../../../model/customer/customer-type";
-import {log} from "util";
-
+import {RentType} from "../services-model/rent-type";
+import {ServiceType} from "../services-model/service-type";
 @Component({
   selector: 'app-create-service',
   templateUrl: './create-service.component.html',

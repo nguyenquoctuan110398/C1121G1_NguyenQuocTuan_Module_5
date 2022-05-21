@@ -6,6 +6,7 @@ import {CreateServiceComponent} from "./create-service/create-service.component"
 import {EditServiceComponent} from "./edit-service/edit-service.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -20,7 +21,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     ServicesRoutingModule,
     FormsModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class ServicesModule { }
