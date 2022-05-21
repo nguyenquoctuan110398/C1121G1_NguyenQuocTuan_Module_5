@@ -14,13 +14,12 @@ import {EditCustomerComponent} from "./component/customer/edit-customer/edit-cus
 import {CreateContractComponent} from "./component/contract/create-contract/create-contract.component";
 import {ListContractComponent} from "./component/contract/list-contract/list-contract.component";
 import {FooterComponent} from "./component/layout/footer/footer.component";
-import { EditServiceVillaComponent } from './component/services/edit-service-villa/edit-service-villa.component';
-import { EditServiceHouseComponent } from './component/services/edit-service-house/edit-service-house.component';
-import { EditServiceRoomComponent } from './component/services/edit-service-room/edit-service-room.component';
 import { EditServiceComponent } from './component/services/edit-service/edit-service.component';
 import { ListServiceComponent } from './component/services/list-service/list-service.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NgxPaginationModule} from "ngx-pagination";
+import {CustomerModule} from "./component/customer/customer.module";
+import {ServicesModule} from "./component/services/services.module";
 
 
 @NgModule({
@@ -28,18 +27,16 @@ import {NgxPaginationModule} from "ngx-pagination";
     AppComponent,
     NavbarComponent,
     HeaderComponent,
-    CreateServiceComponent,
-    ListCustomerComponent,
-    CreateCustomerComponent,
-    EditCustomerComponent,
+    FooterComponent,
+    // CreateServiceComponent,
+    // ListCustomerComponent,
+    // CreateCustomerComponent,
+    // EditCustomerComponent,
     CreateContractComponent,
     ListContractComponent,
-    FooterComponent,
-    EditServiceVillaComponent,
-    EditServiceHouseComponent,
-    EditServiceRoomComponent,
-    EditServiceComponent,
-    ListServiceComponent
+
+    // EditServiceComponent,
+    // ListServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +44,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    CustomerModule,
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
