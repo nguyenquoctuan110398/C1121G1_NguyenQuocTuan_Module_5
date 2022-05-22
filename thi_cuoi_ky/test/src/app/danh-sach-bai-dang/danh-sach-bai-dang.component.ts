@@ -13,21 +13,36 @@ export class DanhSachBaiDangComponent implements OnInit {
 
   baiDangs: BaiDang[] = [];
 
+  baiDangXoa: BaiDang = {};
 
 
-  baiDangSearchs: BaiDang[];
-  dienTichSearchValue = '';
-  giaSearchValue = '';
+
+  // baiDangSearchs: BaiDang[];
+  // dienTichSearchValue = '';
+  // giaSearchValue = '';
+
+  dienTichTimKiem = 0;
+  giaTimKiem = 0;
+  huongTimKiem = '';
+
 
   constructor(private baiDangService: BaiDangService) {
   }
 
   ngOnInit(): void {
-    this.getAll();
+    // this.getAll();
+    this.getAllApi(this.dienTichTimKiem, this.giaTimKiem, this.huongTimKiem);
   }
 
-  getAll() {
-    this.baiDangService.getAll().subscribe(baiDangs => {
+  // getAll() {
+  //   this.baiDangService.getAll().subscribe(baiDangs => {
+  //     this.baiDangs = baiDangs;
+  //     console.log(baiDangs);
+  //   });
+  // }
+
+  getAllApi(dienTichTimKiem, giaTimKiem, huongTimKiem) {
+    this.baiDangService.getAllApi(dienTichTimKiem, giaTimKiem, huongTimKiem).subscribe(baiDangs => {
       this.baiDangs = baiDangs;
       console.log(baiDangs);
     });
@@ -36,16 +51,32 @@ export class DanhSachBaiDangComponent implements OnInit {
 
   // Search
 
-  getAllSearch(dienTichSearchValue, giaSearchValue) {
-    this.baiDangService.getAllSearch(dienTichSearchValue, giaSearchValue).subscribe(baiDangSearchs => {
-      this.baiDangs = baiDangSearchs;
+  // getAllSearch(dienTichSearchValue, giaSearchValue) {
+  //   this.baiDangService.getAllSearch(dienTichSearchValue, giaSearchValue).subscribe(baiDangSearchs => {
+  //     this.baiDangs = baiDangSearchs;
+  //
+  //     console.log(baiDangSearchs);
+  //   });
+  // }
 
-      console.log(baiDangSearchs);
+  searchJson() {
+    this.getAllApi(this.dienTichTimKiem, this.giaTimKiem, this.huongTimKiem);
+    // console.log("CheckSearch: " + this.checkSearch)
+  }
+
+
+  baiDangCanXoa(id: number) {
+    return this.baiDangService.findById(id).subscribe(baiDangXoa => {
+      this.baiDangXoa = baiDangXoa;
     });
   }
 
-  searchJson() {
-    this.getAllSearch(this.dienTichSearchValue, this.giaSearchValue);
-    // console.log("CheckSearch: " + this.checkSearch)
+  xoaBaiDang(closeModal: HTMLButtonElement, successBtn: HTMLButtonElement) {
+    return this.baiDangService.deleteBaiDang(this.baiDangXoa).subscribe(() => {
+      closeModal.click();
+      successBtn.click();
+      this.ngOnInit();
+    });
   }
+
 }

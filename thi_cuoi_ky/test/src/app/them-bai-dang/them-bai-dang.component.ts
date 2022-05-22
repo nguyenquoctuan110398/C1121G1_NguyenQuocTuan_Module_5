@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoaiBaiViet} from '../model/loai-bai-viet';
 import {LoaiBaiVietService} from '../service/loai-bai-viet.service';
 import {BaiDangService} from '../service/bai-dang.service';
+import {DanhMuc} from '../model/danh-muc';
+import {DanhMucService} from '../service/danh-muc.service';
 
 @Component({
   selector: 'app-them-bai-dang',
@@ -11,14 +13,17 @@ import {BaiDangService} from '../service/bai-dang.service';
 })
 export class ThemBaiDangComponent implements OnInit {
 
-  loaiBaiViets: LoaiBaiViet[];
+  // loaiBaiViets: LoaiBaiViet[];
 
   themBaiDang: FormGroup;
 
+  danhMucs: DanhMuc[];
+
   constructor(private loaiBaiVietService: LoaiBaiVietService,
+              private danhMucService: DanhMucService,
               private baiDangService: BaiDangService) {
     this.themBaiDang = new FormGroup({
-      danhMuc: new FormControl(''),
+      danhMucDto: new FormControl(''),
       vungMien: new FormControl(''),
       daiDien: new FormControl(''),
       loaiBaiViet: new FormControl(''),
@@ -36,15 +41,23 @@ export class ThemBaiDangComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLoaiBaiViet();
-    console.log(this.loaiBaiViets);
+    // this.getLoaiBaiViet();
+    // console.log(this.loaiBaiViets);
+    this.getDanhMuc();
   }
 
 
-  getLoaiBaiViet() {
-    this.loaiBaiVietService.getAll().subscribe(loaiBaiViets => {
-      this.loaiBaiViets = loaiBaiViets;
-      console.log(loaiBaiViets);
+  // getLoaiBaiViet() {
+  //   this.loaiBaiVietService.getAll().subscribe(loaiBaiViets => {
+  //     this.loaiBaiViets = loaiBaiViets;
+  //     console.log(loaiBaiViets);
+  //   });
+  // }
+
+  getDanhMuc() {
+    this.danhMucService.getAll().subscribe(danhMucs => {
+      this.danhMucs = danhMucs;
+      console.log(danhMucs);
     });
   }
 

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {DanhSachBaiDangComponent} from './danh-sach-bai-dang/danh-sach-bai-dang.component';
 import {ThemBaiDangComponent} from './them-bai-dang/them-bai-dang.component';
+import {SuaBaiDangComponent} from './sua-bai-dang/sua-bai-dang.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'them-moi',
     component: ThemBaiDangComponent
+  },
+  {
+    path: 'sua/:id',
+    component: SuaBaiDangComponent
   }
 ];
 

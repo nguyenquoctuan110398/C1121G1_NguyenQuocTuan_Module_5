@@ -8,12 +8,14 @@ import { ThemBaiDangComponent } from './them-bai-dang/them-bai-dang.component';
 import { DanhSachBaiDangComponent } from './danh-sach-bai-dang/danh-sach-bai-dang.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SuaBaiDangComponent } from './sua-bai-dang/sua-bai-dang.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemBaiDangComponent,
-    DanhSachBaiDangComponent
+    DanhSachBaiDangComponent,
+    SuaBaiDangComponent
   ],
   imports: [
     BrowserModule,

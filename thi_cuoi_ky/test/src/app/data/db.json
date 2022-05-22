@@ -2,7 +2,10 @@
   "bai-viet": [
     {
       "id": 1,
-      "danhMuc": "Nhà đất",
+      "danhMuc": {
+        "id": 1,
+        "tenDanhMuc": "Nhà đất"
+      },
       "vungMien": "Đà Nẵng",
       "daiDien": "Cá nhân",
       "loaiBaiViet": "Cần bán",
@@ -17,7 +20,10 @@
       "trangThai": "Đang rao"
     },
     {
-      "danhMuc": "Nhà đất",
+      "danhMuc": {
+        "id": 1,
+        "tenDanhMuc": "Nhà đất"
+      },
       "vungMien": "Đà Nẵng",
       "daiDien": "Cá nhân",
       "loaiBaiViet": "Cần mua",
@@ -34,7 +40,10 @@
     },
     {
       "id": 3,
-      "danhMuc": "Nhà đất",
+      "danhMuc": {
+        "id": 1,
+        "ten": "Nhà Đất"
+      },
       "vungMien": "Đà Nẵng",
       "daiDien": "Cá nhân",
       "loaiBaiViet": "Cần bán",
@@ -49,7 +58,10 @@
       "trangThai": "Đang rao"
     },
     {
-      "danhMuc": "Biệt thự",
+      "danhMuc": {
+        "id": 2,
+        "ten": "Biệt thự"
+      },
       "vungMien": "Đà Nẵng",
       "daiDien": "Công ty",
       "loaiBaiViet": "Cho thuê",

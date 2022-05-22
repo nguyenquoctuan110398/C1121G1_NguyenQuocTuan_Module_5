@@ -36,10 +36,25 @@
   <!--    <option value="3">Tên bệnh nhân</option>-->
   <!--  </select>-->
 
-    <input type="text" placeholder="Diện Tích"
-            [(ngModel)]="dienTichSearchValue">
+<!--    <input type="text" placeholder="Diện Tích"-->
+<!--            [(ngModel)]="dienTichSearchValue">-->
 
-    <input type="text" placeholder="Giá" [(ngModel)]="giaSearchValue">
+<!--    <input type="text" placeholder="Giá" [(ngModel)]="giaSearchValue">-->
+
+<!--Search Api-->
+  <input type="text" placeholder="Diện tích"
+  [(ngModel)]="dienTichTimKiem">
+
+  <input type="text" placeholder="Giá"
+         [(ngModel)]="giaTimKiem">
+
+  <select [(ngModel)]="huongTimKiem">
+    <option value=""></option>
+    <option value="Đông">Đông</option>
+    <option value="Tây">Tây</option>
+    <option value="Nam">Nam</option>
+    <option value="Bắc">Bắc</option>
+  </select>
 
 
 <!--  <input type="text" name="searchValue" placeholder="Description Other Convenience"-->
@@ -77,8 +92,8 @@
       <th>Danh mục</th>
       <th>Ngày đăng</th>
       <th>Trạng thái</th>
-<!--      <th>Edit</th>-->
-<!--      <th>Delete</th>-->
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
     </thead>
 
@@ -89,16 +104,16 @@
 <!--      </td>-->
       <td>{{baiDang.tuaDe}}</td>
       <td>{{baiDang.loaiBaiViet}}</td>
-      <td>{{baiDang.danhMuc}}</td>
+      <td>{{baiDang.danhMuc.tenDanhMuc}}</td>
       <td>{{baiDang.ngayDang}}</td>
       <td>{{baiDang.trangThai}}</td>
 
-<!--      <td><a [routerLink]="['/services/edit', service.id]">Edit</a>-->
-<!--      </td>-->
+      <td><a [routerLink]="['/sua', baiDang.id]">Sửa</a>
+      </td>
 
-<!--      <td><a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"-->
-<!--             data-mdb-target="#deleteModal"-->
-<!--             (click)="getServiceDelete(service.id)">Delete</a></td>-->
+      <td><a type="button" class="btn btn-danger btn-sm btn-rounded delete_btn" data-mdb-toggle="modal"
+             data-mdb-target="#deleteModal"
+             (click)="baiDangCanXoa(baiDang.id)">Xóa</a></td>
 
 <!--      &lt;!&ndash;        <td><a th:href="@{/customers/view/{customerId}(customerId=${customer.customerId})}">View</a>&ndash;&gt;-->
 <!--      &lt;!&ndash;        </td>&ndash;&gt;-->
@@ -109,32 +124,46 @@
 
 
 
-<!--Delete Modal -->
-<!--<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog">-->
-<!--    <form action="/customers/delete" method="post">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h5 class="modal-title" id="deleteModalLabel">Delete Customer</h5>-->
-<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--        </div>-->
-<!--        <input type="text" id="deleteByCustomerId" name="deleteByCustomerId">-->
-<!--        <div class="modal-body">-->
-<!--          <p id="deleteInfor"></p>-->
-<!--          <p id="deleteInforNameCustomer"></p>-->
-<!--          <p>Do you want delete-->
-<!--            <span style="color: red" id="customerNameDelete">{{serviceDelete.serviceName}}</span>?</p>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal"-->
-<!--                  id="cancelDeleteModalBtn">No-->
-<!--          </button>-->
-<!--          <button type="submit" class="btn btn-primary" id="deleteModalBtn"-->
-<!--                  (click)="delete(closeModal)">Yes-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</div>-->
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <input type="hidden" name="idDelete" id="idDelete">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa bài đăng</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có muốn xóa
+          <span style="color: red" id="customerNameDelete">{{baiDangXoa.tuaDe}}</span>?</p>
+        <p class="text-warning">*Thao tác này sẽ không thể hoàn tác*</p>
+      </div>
+      <div class="modal-footer">
+        <button #closeModal type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" id="delete_btn" (click)="xoaBaiDang(closeModal, successBtn)">Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button [hidden]="true" #successBtn data-mdb-toggle="modal" data-mdb-target="#successModal"></button>
+<!--success modal-->
+<div id="successModal" class="modal fade">
+  <div class="modal-dialog modal-confirm modal-confirm-success">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success justify-content-center">
+        <div class="icon-box">
+          <i class="material-icons">&#xE876;</i>
+        </div>
+        <button type="button" class="close" data-mdb-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <h4>Tuyệt!</h4>
+        <p>Xóa bài đăng thành công!</p>
+        <button type="button" class="btn btn-danger" id="delete_btnn" data-mdb-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
 
